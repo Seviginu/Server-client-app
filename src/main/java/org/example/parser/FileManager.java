@@ -15,6 +15,15 @@ public class FileManager {
         this.file = file;
     }
 
+    public boolean readable(){
+        return file.canRead();
+    }
+
+    public boolean writable() {
+        return file.canWrite();
+
+    }
+
     public MusicBandCollection jsonToObj() throws IOException {
         FileInputStream inputStream = new FileInputStream(file);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -22,7 +31,7 @@ public class FileManager {
         return gson.fromJson(inputStreamReader, MusicBandCollection.class);
     }
 
-    public boolean objToJson(MusicBandCollection collection) throws IOException {
+    public void objToJson(MusicBandCollection collection) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         BufferedOutputStream outputStream = new BufferedOutputStream(fileOutputStream);
 
