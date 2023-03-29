@@ -1,7 +1,17 @@
 package org.example.collection.element;
 
 public enum Color {
-    RED,
-    BLACK,
-    YELLOW;
+    RED("Красный"),
+    BLACK("Черный"),
+    YELLOW("Желтый");
+
+    private final String name;
+    Color(String name){
+        this.name = name;
+    }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }
