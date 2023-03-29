@@ -10,10 +10,9 @@ abstract public class Printable {
             try {
                 stringBuilder.append(field.getName()).append(": ").append(field.get(this)).append("\n");
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
-
         return stringBuilder.toString();
     }
 }
