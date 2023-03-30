@@ -16,11 +16,11 @@ public class RemoveByIdCommand extends CollectionCommand{
 
     @Override
     public String getDescription() {
-        return null;
+        return "Удаляет элемент по id";
     }
 
     @Override
     public String getName() {
-        return null;
+        return "remove_by_id id";
     }
 }
