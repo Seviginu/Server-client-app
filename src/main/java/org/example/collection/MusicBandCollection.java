@@ -23,6 +23,14 @@ public class MusicBandCollection {
         this.listOfElements = listOfElements;
     }
 
+    public String getCreationTime(){
+        return creationTime;
+    }
+
+    public String getUpdateTime(){
+        return updateTime;
+    }
+
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -32,5 +40,13 @@ public class MusicBandCollection {
             stringBuilder.append(musicBand).append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public void clear(){
+        listOfElements.clear();
+    }
+
+    public List<MusicBand> getListOfElements(){
+        return listOfElements;
     }
 }
