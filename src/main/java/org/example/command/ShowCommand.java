@@ -9,7 +9,7 @@ public class ShowCommand extends CollectionCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
         for (MusicBand band : collection.getListOfElements()){
             System.out.println(band + "\n");
         }

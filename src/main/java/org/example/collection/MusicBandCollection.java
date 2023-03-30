@@ -31,6 +31,16 @@ public class MusicBandCollection {
         return updateTime;
     }
 
+    public boolean remove(long id){
+        for(MusicBand musicBand : listOfElements){
+            if (musicBand.getId() == id){
+                listOfElements.remove(musicBand);
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();

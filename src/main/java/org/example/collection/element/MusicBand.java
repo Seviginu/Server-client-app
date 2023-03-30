@@ -15,6 +15,10 @@ public class MusicBand extends Printable {
     private MusicGenre genre; //Поле может быть null
     private Person frontMan; //Поле не может быть null
 
+    public Long getId(){
+        return id;
+    }
+
     @Override
     public int hashCode(){
         return Objects.hash(

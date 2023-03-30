@@ -8,7 +8,7 @@ public class HelpCommand implements Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
         for(Command command : commandManager.getListOfCommands()){
             System.out.println(command.getName() + ": " + command.getDescription() + "\n");
         }

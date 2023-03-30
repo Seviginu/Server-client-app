@@ -8,7 +8,7 @@ public class InfoCommand extends CollectionCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
         String string = "Время создания: " +
                 collection.getCreationTime() +
                 "\nВремя обновления: " +

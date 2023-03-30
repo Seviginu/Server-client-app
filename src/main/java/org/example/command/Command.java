@@ -1,7 +1,7 @@
 package org.example.command;
 
 interface Command {
-    void execute();
+    void execute(String[] args);
     String getDescription();
     String getName();
 }
