@@ -57,4 +57,14 @@ public class Person extends Printable {
     public int hashCode(){
         return Objects.hash(name, height, hairColor, nationality, location);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null) return false;
+        if(o.getClass() != this.getClass()) return false;
+        return name.equals(((Person) o).getName()) &&
+                height.equals(((Person) o).getHeight()) &&
+                hairColor.equals(((Person) o).getHairColor()) &&
+                nationality.equals(((Person) o).getNationality());
+    }
 }
