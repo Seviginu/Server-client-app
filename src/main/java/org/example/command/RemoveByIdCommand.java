@@ -5,8 +5,8 @@ import org.example.collection.MusicBandCollection;
 public class RemoveByIdCommand extends CollectionCommand{
 
 
-    public RemoveByIdCommand(MusicBandCollection collection) {
-        super(collection);
+    public RemoveByIdCommand(MusicBandCollection collection, CommandManager manager) {
+        super(collection, manager);
     }
 
     @Override

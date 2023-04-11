@@ -3,8 +3,8 @@ package org.example.command;
 import org.example.collection.MusicBandCollection;
 
 public class InfoCommand extends CollectionCommand {
-    public InfoCommand(MusicBandCollection collection) {
-        super(collection);
+    public InfoCommand(MusicBandCollection collection, CommandManager manager) {
+        super(collection, manager);
     }
 
     @Override
@@ -13,9 +13,9 @@ public class InfoCommand extends CollectionCommand {
                 collection.getCreationTime() +
                 "\nВремя обновления: " +
                 collection.getUpdateTime() +
-                "Количество элементов в коллекции: " +
+                "\nКоличество элементов в коллекции: " +
                 collection.getListOfElements().size();
-        System.out.println(string);
+        manager.getChannel().sendString(string);
     }
 
     @Override

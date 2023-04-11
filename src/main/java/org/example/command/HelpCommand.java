@@ -1,16 +1,15 @@
 package org.example.command;
 
-public class HelpCommand implements Command{
-    private final CommandManager commandManager;
+public class HelpCommand extends UserCommand{
 
-    HelpCommand(CommandManager commandManager){
-        this.commandManager = commandManager;
+    public HelpCommand(CommandManager manager) {
+        super(manager);
     }
 
     @Override
     public void execute(String[] args) {
-        for(Command command : commandManager.getListOfCommands()){
-            System.out.println(command.getName() + ": " + command.getDescription() + "\n");
+        for(Command command : manager.getListOfCommands()){
+            manager.getChannel().sendString(command.getName() + ": " + command.getDescription() + "\n");
         }
     }
 

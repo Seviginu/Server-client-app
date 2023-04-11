@@ -3,8 +3,8 @@ package org.example.command;
 import org.example.collection.MusicBandCollection;
 
 public class ClearCommand extends CollectionCommand{
-    public ClearCommand(MusicBandCollection collection) {
-        super(collection);
+    public ClearCommand(MusicBandCollection collection, CommandManager manager) {
+        super(collection, manager);
     }
 
     @Override

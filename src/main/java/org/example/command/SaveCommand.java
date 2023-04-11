@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class SaveCommand extends FileCommand{
 
-    public SaveCommand(MusicBandCollection collection, FileManager file) {
-        super(collection, file);
+    public SaveCommand(MusicBandCollection collection, FileManager file, CommandManager manager) {
+        super(collection, file, manager);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class SaveCommand extends FileCommand{
             file.objToJson(collection);
         }
         catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

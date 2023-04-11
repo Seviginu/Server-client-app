@@ -2,11 +2,12 @@ package org.example.command;
 
 import org.example.collection.MusicBandCollection;
 
-abstract public class CollectionCommand implements Command {
+abstract public class CollectionCommand extends UserCommand {
 
     protected MusicBandCollection collection;
 
-    public CollectionCommand(MusicBandCollection collection){
+    public CollectionCommand(MusicBandCollection collection, CommandManager manager){
+        super(manager);
         this.collection = collection;
     }
 

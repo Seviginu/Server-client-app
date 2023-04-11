@@ -7,8 +7,8 @@ abstract public class FileCommand extends CollectionCommand{
 
     protected FileManager file;
 
-    public FileCommand(MusicBandCollection collection, FileManager file){
-        super(collection);
+    public FileCommand(MusicBandCollection collection, FileManager file, CommandManager manager){
+        super(collection, manager);
         this.file = file;
     }
 }
