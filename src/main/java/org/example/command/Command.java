@@ -1,7 +1,9 @@
 package org.example.command;
 
+import java.util.List;
+
 interface Command {
-    void execute(String[] args);
+    void execute(List<String> args);
     String getDescription();
     String getName();
 }

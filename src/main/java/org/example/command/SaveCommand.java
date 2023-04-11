@@ -4,6 +4,7 @@ import org.example.collection.MusicBandCollection;
 import org.example.parser.FileManager;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SaveCommand extends FileCommand{
 
@@ -12,7 +13,7 @@ public class SaveCommand extends FileCommand{
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute(List<String> args) {
         try {
             file.objToJson(collection);
         }

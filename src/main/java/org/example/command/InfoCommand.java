@@ -2,13 +2,15 @@ package org.example.command;
 
 import org.example.collection.MusicBandCollection;
 
+import java.util.List;
+
 public class InfoCommand extends CollectionCommand {
     public InfoCommand(MusicBandCollection collection, CommandManager manager) {
         super(collection, manager);
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute(List<String> args) {
         String string = "Время создания: " +
                 collection.getCreationTime() +
                 "\nВремя обновления: " +

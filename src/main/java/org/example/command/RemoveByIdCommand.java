@@ -2,6 +2,8 @@ package org.example.command;
 
 import org.example.collection.MusicBandCollection;
 
+import java.util.List;
+
 public class RemoveByIdCommand extends CollectionCommand{
 
 
@@ -10,8 +12,8 @@ public class RemoveByIdCommand extends CollectionCommand{
     }
 
     @Override
-    public void execute(String[] args){
-        collection.remove(Integer.parseInt(args[0]));
+    public void execute(List<String> args){
+        collection.remove(Integer.parseInt(args.get(0)));
     }
 
     @Override
