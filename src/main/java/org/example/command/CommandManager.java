@@ -27,12 +27,14 @@ public class CommandManager{
         commandsHashMap.put(command.getName(), command);
     }
 
-    public void executeCommand(List<String> args) throws CommandNotFoundException {
-        if (args.size() == 0) return;
-        if (commandsHashMap.containsKey(args.get(0))) throw new CommandNotFoundException();
-        String commandName = args.remove(0);
+    public void executeCommand(String commandName, List<String> args) throws CommandNotFoundException {
+        if (!commandsHashMap.containsKey(commandName))throw new CommandNotFoundException();
         commandsHistory.add(commandName);
         commandsHashMap.get(commandName).execute(args);
+    }
+
+    public void executeCommand(String commandName) throws CommandNotFoundException {
+        executeCommand(commandName, new ArrayList<>());
     }
 
     public List<String> getCommandsHistory(){
