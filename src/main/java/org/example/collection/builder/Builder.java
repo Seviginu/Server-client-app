@@ -24,5 +24,11 @@ abstract public class Builder<T> {
         userMode = true;
     }
 
+    public Builder(UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode){
+        this.outputChannel =outputChannel;
+        this.inputChannel = inputChannel;
+        this.userMode = userMode;
+    }
+
     abstract T getElement();
 }

@@ -5,9 +5,10 @@ import org.example.collection.Printable;
 import java.util.Objects;
 
 public class Location extends Printable {
-    private long x;
+    private long x; //Максимальное значение поля: 258
     private float y;
     private Long z; //Поле не может быть null
+    private String name; //Поле не может быть null
 
     public long getX() {
         return x;
@@ -40,8 +41,6 @@ public class Location extends Printable {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String name; //Поле не может быть null
 
 
     @Override
