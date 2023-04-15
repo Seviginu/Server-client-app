@@ -11,8 +11,8 @@ public class HistoryCommand extends UserCommand{
     public void execute(List<String> args) {
         int counter = 0;
         for(String commandName : manager.getCommandsHistory()){
-            if (counter++ >= 11) return;
-            manager.getChannel().sendString(commandName);
+            if (counter++ >= 11 || manager.getCommandsHistory().size() == counter) return;
+            manager.getChannel().sendStringLine(commandName);
         };
     }
 

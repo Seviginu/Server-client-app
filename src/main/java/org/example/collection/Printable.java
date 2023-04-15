@@ -8,6 +8,7 @@ abstract public class Printable {
         StringBuilder stringBuilder = new StringBuilder();
         for(Field field : this.getClass().getDeclaredFields()){
             try {
+                field.setAccessible(true);
                 stringBuilder.append(field.getName()).append(": ").append(field.get(this)).append("\n");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

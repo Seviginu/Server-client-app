@@ -17,7 +17,7 @@ public class InfoCommand extends CollectionCommand {
                 collection.getUpdateTime() +
                 "\nКоличество элементов в коллекции: " +
                 collection.getListOfElements().size();
-        manager.getChannel().sendString(string);
+        manager.getChannel().sendStringLine(string);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ShowCommand extends CollectionCommand{
     @Override
     public void execute(List<String> args) {
         for (MusicBand band : collection.getListOfElements()){
-            manager.getChannel().sendString(band + "\n");
+            manager.getChannel().sendStringLine(band + "\n");
         }
     }
 
