@@ -11,7 +11,7 @@ public class HelpCommand extends UserCommand{
     @Override
     public void execute(List<String> args) {
         for(Command command : manager.getListOfCommands()){
-            manager.getChannel().sendString(command.getName() + ": " + command.getDescription());
+            manager.getChannel().sendStringLine(command.getName() + ": " + command.getDescription());
         }
     }
 

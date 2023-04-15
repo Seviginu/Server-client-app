@@ -28,6 +28,14 @@ public class MusicBandCollection {
         return random.nextLong();
     }
 
+    public void add(MusicBand band){
+        listOfElements.add(band);
+    }
+
+    public void clear(){
+        listOfElements.clear();
+    }
+
     public String getCreationTime(){
         return creationTime;
     }
@@ -44,10 +52,6 @@ public class MusicBandCollection {
             }
         }
         return false;
-    }
-
-    public void clear(){
-        listOfElements.clear();
     }
 
     public List<MusicBand> getListOfElements(){
