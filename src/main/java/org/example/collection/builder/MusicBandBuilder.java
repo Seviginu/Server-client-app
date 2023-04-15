@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.Random;
 
 public class MusicBandBuilder extends Builder<MusicBand> {
+    private boolean newElement = false;
 
     public MusicBandBuilder(UserInputChannel inputChannel, MusicBand element) {
         super(inputChannel, element);
@@ -19,6 +20,11 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     public MusicBandBuilder(UserChannel channel, MusicBand element) {
         super(channel, element);
+    }
+
+    public MusicBandBuilder(UserChannel channel) {
+        super(channel);
+        newElement = true;
     }
 
     public void setName(){
@@ -218,7 +224,6 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
 
     public MusicBand getElement() {
-        setId();
         setName();
         setCoordinates();
         setNumberOfParticipants();
@@ -226,7 +231,10 @@ public class MusicBandBuilder extends Builder<MusicBand> {
         setDescription();
         setGenre();
         setFrontMan();
-        setCreationDate();
+        if (newElement) {
+            setCreationDate();
+            setId();
+        }
         return element;
     }
 }

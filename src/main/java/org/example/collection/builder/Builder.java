@@ -24,6 +24,12 @@ abstract public class Builder<T> {
         userMode = true;
     }
 
+    public Builder(UserChannel channel){
+        outputChannel = channel;
+        inputChannel = channel;
+        userMode = true;
+    }
+
     public Builder(UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode){
         this.outputChannel =outputChannel;
         this.inputChannel = inputChannel;
