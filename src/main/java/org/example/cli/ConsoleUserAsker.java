@@ -9,7 +9,7 @@ public class ConsoleUserAsker<T> implements UserAsker<T> {
             System.out.println("Вы неверно ввели значение");
             System.out.println(validator.getRequirements());
             String value = input.getString();
-            if(validator.validate(value)) return validator.fromString(value);
+            if(validator.validateString(value)) return validator.fromString(value);
         }
         return null;
     }

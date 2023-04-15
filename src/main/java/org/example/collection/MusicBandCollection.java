@@ -4,14 +4,14 @@ import org.example.collection.element.MusicBand;
 import org.example.collection.element.MusicGenre;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class MusicBandCollection {
     private String creationTime;
     private String updateTime;
-
-
     private final List<MusicBand> listOfElements;
 
 
@@ -21,6 +21,11 @@ public class MusicBandCollection {
 
     public MusicBandCollection(List<MusicBand> listOfElements) {
         this.listOfElements = listOfElements;
+    }
+
+    public static long generateId(){
+        Random random = new Random();
+        return random.nextLong();
     }
 
     public String getCreationTime(){
@@ -41,6 +46,14 @@ public class MusicBandCollection {
         return false;
     }
 
+    public void clear(){
+        listOfElements.clear();
+    }
+
+    public List<MusicBand> getListOfElements(){
+        return new ArrayList<MusicBand>(listOfElements);
+    }
+
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -50,13 +63,5 @@ public class MusicBandCollection {
             stringBuilder.append(musicBand).append("\n");
         }
         return stringBuilder.toString();
-    }
-
-    public void clear(){
-        listOfElements.clear();
-    }
-
-    public List<MusicBand> getListOfElements(){
-        return listOfElements;
     }
 }

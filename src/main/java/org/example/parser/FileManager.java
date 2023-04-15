@@ -35,7 +35,7 @@ public class FileManager {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         BufferedOutputStream outputStream = new BufferedOutputStream(fileOutputStream);
 
-        String outputString = gson.toJson((Object) collection, collection.getClass());
+        String outputString = gson.toJson(collection, collection.getClass());
         outputStream.write(outputString.getBytes());
 
     }
