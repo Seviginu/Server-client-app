@@ -5,10 +5,6 @@ import java.util.Scanner;
 public class ConsoleChannel implements UserChannel {
     private final Scanner scanner;
 
-    public ConsoleChannel(Scanner scanner){
-        this.scanner = scanner;
-    }
-
     public ConsoleChannel(){
         scanner = new Scanner(System.in);
     }
@@ -19,7 +15,12 @@ public class ConsoleChannel implements UserChannel {
     }
 
     @Override
-    public void sendString(String string) {
+    public void sendStringLine(String string) {
         System.out.println(string);
+    }
+
+    @Override
+    public void sendString(String string) {
+        System.out.print(string);
     }
 }

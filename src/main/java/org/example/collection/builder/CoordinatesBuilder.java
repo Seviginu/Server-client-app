@@ -23,7 +23,7 @@ public class CoordinatesBuilder extends Builder<Coordinates>{
     }
 
     public void setX(){
-        if(userMode) outputChannel.sendString("Введите значение поля X." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля X." +
                 " Значение должно быть числом");
         String stringValue = inputChannel.getString();
         Double value;
@@ -60,7 +60,7 @@ public class CoordinatesBuilder extends Builder<Coordinates>{
     }
 
     public void setY(){
-        if(userMode) outputChannel.sendString("Введите значение поля Y." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля Y." +
                 " Значение должно быть числом");
         String stringValue = inputChannel.getString();
         Double value;

@@ -24,7 +24,7 @@ public class PersonBuilder extends Builder<Person> {
     }
 
     public void setName(){
-        if(userMode) outputChannel.sendString("Введите значение поля name." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля name." +
                 " Значение не может быть пустым");
         String value = inputChannel.getString();
         StringValidator<String> validator = new StringValidator<>(){
@@ -59,7 +59,7 @@ public class PersonBuilder extends Builder<Person> {
     }
 
     public void setHeight(){
-        if(userMode) outputChannel.sendString("Введите значение поля height." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля height." +
                 " Значение должно быть числом больше 0");
         String stringValue = inputChannel.getString();
         Float value;
@@ -97,9 +97,9 @@ public class PersonBuilder extends Builder<Person> {
 
     public void setHairColor(){
         if(userMode){
-            outputChannel.sendString("Введите число для выбора Color:");
+            outputChannel.sendStringLine("Введите число для выбора Color:");
             int counter = 0;
-            for(Color color : Color.values()) outputChannel.sendString(counter++ + ") " + color);
+            for(Color color : Color.values()) outputChannel.sendStringLine(counter++ + ") " + color);
         }
 
         StringValidator<Color> validator = new StringValidator<>(){
@@ -142,9 +142,9 @@ public class PersonBuilder extends Builder<Person> {
 
     public void setNationality(){
         if(userMode){
-            outputChannel.sendString("Введите число для выбора country:");
+            outputChannel.sendStringLine("Введите число для выбора country:");
             int counter = 0;
-            for(Country country : Country.values()) outputChannel.sendString(counter++ + ") " + country);
+            for(Country country : Country.values()) outputChannel.sendStringLine(counter++ + ") " + country);
         }
 
         StringValidator<Country> validator = new StringValidator<>(){

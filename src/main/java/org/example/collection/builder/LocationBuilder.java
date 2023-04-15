@@ -23,7 +23,7 @@ public class LocationBuilder extends Builder<Location> {
     }
 
     public void setX(){
-        if(userMode) outputChannel.sendString("Введите значение поля X." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля X." +
                 " Значение не должно превышать 258");
         String stringValue = inputChannel.getString();
         Long value;
@@ -60,7 +60,7 @@ public class LocationBuilder extends Builder<Location> {
     }
 
     public void setY(){
-        if(userMode) outputChannel.sendString("Введите значение поля Y." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля Y." +
                 " Значение должно быть числом");
         String stringValue = inputChannel.getString();
         Float value;
@@ -97,7 +97,7 @@ public class LocationBuilder extends Builder<Location> {
     }
 
     public void setZ(){
-        if(userMode) outputChannel.sendString("Введите значение поля Z." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля Z." +
                 " Значение не должно превышать 258");
         String stringValue = inputChannel.getString();
         Long value;
@@ -134,7 +134,7 @@ public class LocationBuilder extends Builder<Location> {
     }
 
     public void setName(){
-        if(userMode) outputChannel.sendString("Введите значение поля name." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля name." +
                 " Значение не может быть пустым");
         String value = inputChannel.getString();
         StringValidator<String> validator = new StringValidator<>(){

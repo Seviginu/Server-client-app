@@ -22,7 +22,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setName(){
-        if(userMode) outputChannel.sendString("Введите значение поля name." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля name." +
                 " Значение не может быть пустым");
         String value = inputChannel.getString();
         StringValidator<String> validator = new StringValidator<>(){
@@ -57,7 +57,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setNumberOfParticipants(){
-        if(userMode) outputChannel.sendString("Введите значение поля numberOfParticipants");
+        if(userMode) outputChannel.sendStringLine("Введите значение поля numberOfParticipants");
         String stringValue = inputChannel.getString();
         Integer value;
         StringValidator<Integer> validator = new StringValidator<>(){
@@ -88,7 +88,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setAlbumsCount(){
-        if(userMode) outputChannel.sendString("Введите значение поля numberOfParticipants." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля numberOfParticipants." +
                 " Значение должно быть положительным");
         String stringValue = inputChannel.getString();
         Integer value;
@@ -120,7 +120,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setDescription(){
-        if(userMode) outputChannel.sendString("Введите значение поля name." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля name." +
                 " Значение не может быть пустым");
         String value = inputChannel.getString();
         StringValidator<String> validator = new StringValidator<>(){
@@ -155,9 +155,9 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     public void setGenre(){
         if(userMode){
-            outputChannel.sendString("Введите число для выбора genre:");
+            outputChannel.sendStringLine("Введите число для выбора genre:");
             int counter = 0;
-            for(MusicGenre genre : MusicGenre.values()) outputChannel.sendString(counter++ + ") " + genre);
+            for(MusicGenre genre : MusicGenre.values()) outputChannel.sendStringLine(counter++ + ") " + genre);
         }
 
         StringValidator<MusicGenre> validator = new StringValidator<>(){
@@ -208,7 +208,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
 
     public void setId(){
-        element.setId(new Random().nextLong());
+        element.setId(MusicBandCollection.generateId());
     }
 
     public void setCreationDate(){
