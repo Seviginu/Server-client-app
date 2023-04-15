@@ -11,6 +11,11 @@ import org.example.collection.element.Person;
 import org.example.collection.exceptions.BuildException;
 
 public class PersonBuilder extends Builder<Person> {
+
+    {
+        element = new Person();
+    }
+
     public PersonBuilder(UserInputChannel inputChannel, Person element) {
         super(inputChannel, element);
     }

@@ -10,6 +10,10 @@ import org.example.collection.exceptions.BuildException;
 
 public class LocationBuilder extends Builder<Location> {
 
+    {
+        element = new Location();
+    }
+
     public LocationBuilder(UserInputChannel inputChannel, Location element) {
         super(inputChannel, element);
     }

@@ -88,7 +88,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setAlbumsCount(){
-        if(userMode) outputChannel.sendStringLine("Введите значение поля numberOfParticipants." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля albumsCount." +
                 " Значение должно быть положительным");
         String stringValue = inputChannel.getString();
         Integer value;
@@ -120,7 +120,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     }
 
     public void setDescription(){
-        if(userMode) outputChannel.sendStringLine("Введите значение поля name." +
+        if(userMode) outputChannel.sendStringLine("Введите значение поля descripion." +
                 " Значение не может быть пустым");
         String value = inputChannel.getString();
         StringValidator<String> validator = new StringValidator<>(){

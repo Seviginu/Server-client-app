@@ -9,6 +9,9 @@ import org.example.collection.exceptions.BuildException;
 
 public class CoordinatesBuilder extends Builder<Coordinates>{
 
+    {
+        element = new Coordinates();
+    }
 
     public CoordinatesBuilder(UserInputChannel inputChannel, Coordinates element) {
         super(inputChannel, element);
