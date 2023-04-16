@@ -34,7 +34,7 @@ public class GroupFrontManCommand extends CollectionCommand {
 
   @Override
   public String getDescription() {
-    return "Групирует элементы коллекции по значению frontMan, выводит количество элементов в каждой группе";
+    return "Группирует элементы коллекции по значению frontMan, выводит количество элементов в каждой группе";
   }
 
   @Override
