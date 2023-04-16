@@ -1,4 +1,3 @@
 package org.example.collection.exceptions;
 
-public class BuildException extends RuntimeException{
-}
+public class BuildException extends RuntimeException {}

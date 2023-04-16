@@ -2,18 +2,18 @@ package org.example.collection;
 
 import java.lang.reflect.Field;
 
-abstract public class Printable {
-    @Override
-    public String toString(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(Field field : this.getClass().getDeclaredFields()){
-            try {
-                field.setAccessible(true);
-                stringBuilder.append(field.getName()).append(": ").append(field.get(this)).append("\n");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return stringBuilder.toString();
+public abstract class Printable {
+  @Override
+  public String toString() {
+    StringBuilder stringBuilder = new StringBuilder();
+    for (Field field : this.getClass().getDeclaredFields()) {
+      try {
+        field.setAccessible(true);
+        stringBuilder.append(field.getName()).append(": ").append(field.get(this)).append("\n");
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      }
     }
+    return stringBuilder.toString();
+  }
 }

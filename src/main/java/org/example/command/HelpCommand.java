@@ -2,26 +2,26 @@ package org.example.command;
 
 import java.util.List;
 
-public class HelpCommand extends UserCommand{
+public class HelpCommand extends UserCommand {
 
-    public HelpCommand(CommandManager manager) {
-        super(manager);
-    }
+  public HelpCommand(CommandManager manager) {
+    super(manager);
+  }
 
-    @Override
-    public void execute(List<String> args) {
-        for(Command command : manager.getListOfCommands()){
-            manager.getChannel().sendStringLine(command.getName() + ": " + command.getDescription());
-        }
+  @Override
+  public void execute(List<String> args) {
+    for (Command command : manager.getListOfCommands()) {
+      manager.getChannel().sendStringLine(command.getName() + ": " + command.getDescription());
     }
+  }
 
-    @Override
-    public String getDescription() {
-        return "Выводит список всех команд";
-    }
+  @Override
+  public String getDescription() {
+    return "Выводит список всех команд";
+  }
 
-    @Override
-    public String getName() {
-        return "help";
-    }
+  @Override
+  public String getName() {
+    return "help";
+  }
 }

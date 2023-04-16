@@ -5,36 +5,36 @@ import org.example.cli.UserInputChannel;
 import org.example.cli.UserOutputChannel;
 import org.example.collection.element.MusicBand;
 
-abstract public class Builder<T> {
-    protected T element;
-    protected UserInputChannel inputChannel;
-    protected UserOutputChannel outputChannel;
-    protected boolean userMode;
+public abstract class Builder<T> {
+  protected T element;
+  protected UserInputChannel inputChannel;
+  protected UserOutputChannel outputChannel;
+  protected boolean userMode;
 
-    public Builder(UserInputChannel inputChannel, T element){
-        this.inputChannel = inputChannel;
-        this.element = element;
-        userMode = false;
-    }
+  public Builder(UserInputChannel inputChannel, T element) {
+    this.inputChannel = inputChannel;
+    this.element = element;
+    userMode = false;
+  }
 
-    public Builder(UserChannel channel, T element){
-        outputChannel = channel;
-        inputChannel = channel;
-        this.element = element;
-        userMode = true;
-    }
+  public Builder(UserChannel channel, T element) {
+    outputChannel = channel;
+    inputChannel = channel;
+    this.element = element;
+    userMode = true;
+  }
 
-    public Builder(UserChannel channel){
-        outputChannel = channel;
-        inputChannel = channel;
-        userMode = true;
-    }
+  public Builder(UserChannel channel) {
+    outputChannel = channel;
+    inputChannel = channel;
+    userMode = true;
+  }
 
-    public Builder(UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode){
-        this.outputChannel =outputChannel;
-        this.inputChannel = inputChannel;
-        this.userMode = userMode;
-    }
+  public Builder(UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode) {
+    this.outputChannel = outputChannel;
+    this.inputChannel = inputChannel;
+    this.userMode = userMode;
+  }
 
-    abstract T getElement();
+  abstract T getElement();
 }
