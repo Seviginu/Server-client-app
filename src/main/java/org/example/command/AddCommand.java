@@ -13,7 +13,7 @@ public class AddCommand extends CollectionCommand{
 
     @Override
     public void execute(List<String> args) {
-        MusicBandBuilder builder = new MusicBandBuilder(manager.getChannel(), new MusicBand());
+        MusicBandBuilder builder = new MusicBandBuilder(manager.getChannel());
         collection.add(builder.getElement());
     }
 

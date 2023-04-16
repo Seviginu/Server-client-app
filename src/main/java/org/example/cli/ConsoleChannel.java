@@ -11,7 +11,7 @@ public class ConsoleChannel implements UserChannel {
 
     @Override
     public String getString() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     @Override

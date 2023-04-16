@@ -4,10 +4,7 @@ import org.example.collection.element.MusicBand;
 import org.example.collection.element.MusicGenre;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MusicBandCollection {
     private String creationTime;
@@ -56,6 +53,25 @@ public class MusicBandCollection {
 
     public List<MusicBand> getListOfElements(){
         return new ArrayList<MusicBand>(listOfElements);
+    }
+
+    public MusicBand getElement(Long id){
+        for (MusicBand band : listOfElements){
+            if(Objects.equals(band.getId(), id)){
+                return band;
+            }
+        }
+        return null;
+    }
+
+    public boolean updateElement(Long id, MusicBand element){
+        for (MusicBand band : listOfElements){
+            if(Objects.equals(band.getId(), id)){
+                listOfElements.replaceAll(o -> o.getId().equals(id) ? element : o);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

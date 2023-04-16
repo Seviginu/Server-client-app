@@ -12,14 +12,18 @@ import java.time.ZonedDateTime;
 import java.util.Random;
 
 public class MusicBandBuilder extends Builder<MusicBand> {
-    private boolean newElement = false;
-
-    public MusicBandBuilder(UserInputChannel inputChannel, MusicBand element) {
-        super(inputChannel, element);
+    {
+        element = new MusicBand();
     }
+
+    private boolean newElement = false;
 
     public MusicBandBuilder(UserChannel channel, MusicBand element) {
         super(channel, element);
+    }
+
+    public MusicBandBuilder(UserInputChannel inputChannel, MusicBand element) {
+        super(inputChannel, element);
     }
 
     public MusicBandBuilder(UserChannel channel) {

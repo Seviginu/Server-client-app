@@ -29,8 +29,8 @@ public class CommandManager{
 
     public void executeCommand(String commandName, List<String> args) throws CommandNotFoundException {
         if (!commandsHashMap.containsKey(commandName))throw new CommandNotFoundException();
-        commandsHistory.add(commandName);
         commandsHashMap.get(commandName).execute(args);
+        commandsHistory.add(commandName);
     }
 
     public void executeCommand(String commandName) throws CommandNotFoundException {
