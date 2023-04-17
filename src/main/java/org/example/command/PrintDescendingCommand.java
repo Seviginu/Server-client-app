@@ -23,7 +23,7 @@ public class PrintDescendingCommand extends CollectionCommand {
 
   @Override
   public String getDescription() {
-    return "Выводит элементы коллекции в порядке убывания(лекскигкографически по имени группы)";
+    return "Выводит элементы коллекции в порядке убывания(лексикографически по имени группы)";
   }
 
   @Override
