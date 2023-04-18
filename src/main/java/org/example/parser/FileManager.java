@@ -2,12 +2,9 @@ package org.example.parser;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.collection.MusicBandCollection;
-
 import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import org.example.collection.MusicBandCollection;
 
 public class FileManager {
   private File file;
@@ -29,19 +26,19 @@ public class FileManager {
   }
 
   public MusicBandCollection jsonToObj() throws IOException {
-    FileInputStream inputStream = new FileInputStream(file);
-    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+    try (FileInputStream inputStream = new FileInputStream(file);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
 
-    return gson.fromJson(inputStreamReader, MusicBandCollection.class);
+      return gson.fromJson(inputStreamReader, MusicBandCollection.class);
+    }
   }
 
   public void objToJson(MusicBandCollection collection) throws IOException {
-    FileOutputStream fileOutputStream = new FileOutputStream(file);
-    BufferedOutputStream outputStream = new BufferedOutputStream(fileOutputStream);
+    try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+        BufferedOutputStream outputStream = new BufferedOutputStream(fileOutputStream)) {
 
-    String outputString = gson.toJson(collection, collection.getClass());
-    outputStream.write(outputString.getBytes());
-    outputStream.close();
-    fileOutputStream.close();
+      String outputString = gson.toJson(collection, collection.getClass());
+      outputStream.write(outputString.getBytes());
+    }
   }
 }
