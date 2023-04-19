@@ -23,7 +23,10 @@ public class UpdateCommand extends CollectionCommand {
       throw new WrongArgumentException("Аргумент id должен быть числом");
     }
     MusicBandBuilder builder =
-        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true);
+        new MusicBandBuilder(
+            manager.getInputChannel(),
+            manager.getOutputChannel(),
+            !args.contains("-nousermode"));
     collection.updateElement(id, builder.getElement());
   }
 

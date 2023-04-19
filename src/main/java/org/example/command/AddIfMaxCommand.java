@@ -11,19 +11,27 @@ public class AddIfMaxCommand extends CollectionCommand {
     super(collection, manager);
   }
 
-  @Override
-  public void execute(List<String> args) {
-    MusicBand band =
-        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true)
-            .getElement();
-    boolean isMax = true;
+  private boolean isMax(MusicBand band){
+    boolean isMaximum = true;
     for (MusicBand musicBand : collection.getListOfElements()) {
       if (musicBand.getAlbumsCount() >= band.getAlbumsCount()) {
-        isMax = false;
+        isMaximum = false;
         break;
       }
     }
-    if (isMax) {
+    return isMaximum;
+  }
+
+  @Override
+  public void execute(List<String> args) {
+    MusicBand band =
+        new MusicBandBuilder(
+                manager.getInputChannel(),
+                manager.getOutputChannel(),
+                !args.contains("-nousermode"))
+            .getElement();
+    boolean isMaximum = isMax(band);
+    if (isMaximum) {
       collection.add(band);
       manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
     } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");

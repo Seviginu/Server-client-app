@@ -12,7 +12,10 @@ public class AddCommand extends CollectionCommand {
   @Override
   public void execute(List<String> args) {
     MusicBandBuilder builder =
-        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true);
+        new MusicBandBuilder(
+            manager.getInputChannel(),
+            manager.getOutputChannel(),
+            !args.contains("-nousermode"));
     collection.add(builder.getElement());
   }
 

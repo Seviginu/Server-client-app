@@ -30,6 +30,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
   public MusicBandBuilder(
       UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode) {
     super(inputChannel, outputChannel, userMode);
+    newElement = true;
   }
 
   public void setName() {

@@ -6,15 +6,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import org.example.cli.IgnoreOutputChannel;
 import org.example.cli.UserInputChannel;
-import org.example.cli.UserOutputChannel;
 import org.example.command.exceptions.WrongArgumentException;
 
 public class ExecuteScriptCommand extends UserCommand {
 
   private static class ScriptFileUserChannel implements UserInputChannel {
-    private Stack<BufferedReader> inputStreams;
+    private final Stack<BufferedReader> inputStreams = new Stack<>();
 
     public void pushReader(BufferedReader reader) {
       inputStreams.push(reader);
@@ -56,8 +54,8 @@ public class ExecuteScriptCommand extends UserCommand {
     while (!channel.isEmpty()) {
       String string = channel.getString();
       if (string == null) continue;
-      ArrayList<String> command = (ArrayList<String>) Arrays.stream(string.split(" ", 1)).toList();
-      String commandName = command.remove(0);
+      List<String> command = new ArrayList<>(Arrays.asList(string.split(" ", 1)));
+      String commandName = command.get(0);
       if (commandName.equals("execute_script")) {
         Path newPath = Paths.get(command.get(0)).toAbsolutePath();
         if (paths.contains(newPath)) continue;
@@ -66,6 +64,7 @@ public class ExecuteScriptCommand extends UserCommand {
         continue;
       }
       try {
+        command.add("-nousermode");
         manager.executeCommand(command.remove(0), command);
       } catch (Exception ignored) {
       }
@@ -83,21 +82,18 @@ public class ExecuteScriptCommand extends UserCommand {
     channel.pushReader(reader);
 
     UserInputChannel previousInputChannel = manager.getInputChannel();
-    UserOutputChannel previousOutputChannel = manager.getOutputChannel();
-    manager.setOutputChannel(new IgnoreOutputChannel());
     manager.setInputChannel(channel);
     executionLoop(paths, channel);
     manager.setInputChannel(previousInputChannel);
-    manager.setOutputChannel(previousOutputChannel);
   }
 
   @Override
   public String getDescription() {
-    return null;
+    return "Исполняет скрипт, указанный в файле";
   }
 
   @Override
   public String getName() {
-    return null;
+    return "execute_script";
   }
 }
