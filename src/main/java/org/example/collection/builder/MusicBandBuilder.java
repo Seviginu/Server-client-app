@@ -1,15 +1,11 @@
 package org.example.collection.builder;
 
+import java.time.LocalDateTime;
 import org.example.cli.*;
 import org.example.collection.MusicBandCollection;
 import org.example.collection.element.MusicBand;
 import org.example.collection.element.MusicGenre;
 import org.example.collection.exceptions.BuildException;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Random;
 
 public class MusicBandBuilder extends Builder<MusicBand> {
   {
@@ -29,6 +25,11 @@ public class MusicBandBuilder extends Builder<MusicBand> {
   public MusicBandBuilder(UserChannel channel) {
     super(channel);
     newElement = true;
+  }
+
+  public MusicBandBuilder(
+      UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode) {
+    super(inputChannel, outputChannel, userMode);
   }
 
   public void setName() {
@@ -55,7 +56,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
           @Override
           public String getRequirements() {
-            return "Значние name не может быть пустым";
+            return "Значение name не может быть пустым";
           }
         };
 

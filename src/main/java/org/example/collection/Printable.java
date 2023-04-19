@@ -14,6 +14,6 @@ public abstract class Printable {
         e.printStackTrace();
       }
     }
-    return stringBuilder.deleteCharAt(stringBuilder.length()-1).toString();
+    return stringBuilder.deleteCharAt(stringBuilder.length() - 1).toString();
   }
 }

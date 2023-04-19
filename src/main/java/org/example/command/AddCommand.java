@@ -1,10 +1,8 @@
 package org.example.command;
 
+import java.util.List;
 import org.example.collection.MusicBandCollection;
 import org.example.collection.builder.MusicBandBuilder;
-import org.example.collection.element.MusicBand;
-
-import java.util.List;
 
 public class AddCommand extends CollectionCommand {
   public AddCommand(MusicBandCollection collection, CommandManager manager) {
@@ -13,7 +11,8 @@ public class AddCommand extends CollectionCommand {
 
   @Override
   public void execute(List<String> args) {
-    MusicBandBuilder builder = new MusicBandBuilder(manager.getChannel());
+    MusicBandBuilder builder =
+        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true);
     collection.add(builder.getElement());
   }
 

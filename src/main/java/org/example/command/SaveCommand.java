@@ -1,10 +1,9 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-import org.example.parser.FileManager;
-
 import java.io.IOException;
 import java.util.List;
+import org.example.collection.MusicBandCollection;
+import org.example.parser.FileManager;
 
 public class SaveCommand extends FileCommand {
 

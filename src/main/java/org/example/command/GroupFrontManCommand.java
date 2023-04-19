@@ -1,12 +1,11 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-import org.example.collection.element.MusicBand;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import org.example.collection.MusicBandCollection;
+import org.example.collection.element.MusicBand;
 
 public class GroupFrontManCommand extends CollectionCommand {
   public GroupFrontManCommand(MusicBandCollection collection, CommandManager manager) {
@@ -22,14 +21,14 @@ public class GroupFrontManCommand extends CollectionCommand {
     String frontManName = bandsList.get(0).getFrontMan().getName();
     for (MusicBand band : bandsList) {
       if (!Objects.equals(band.getFrontMan().getName(), frontManName)) {
-        manager.getChannel().sendString(frontManName + ": " + countOfGroups + "\n");
+        manager.getOutputChannel().sendString(frontManName + ": " + countOfGroups + "\n");
         countOfGroups = 1;
         frontManName = band.getFrontMan().getName();
       }
       countOfGroups++;
-      manager.getChannel().sendString(band.toString());
+      manager.getOutputChannel().sendString(band.toString());
     }
-    manager.getChannel().sendString(frontManName + ": " + countOfGroups + "\n");
+    manager.getOutputChannel().sendString(frontManName + ": " + countOfGroups + "\n");
   }
 
   @Override

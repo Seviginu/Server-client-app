@@ -13,7 +13,9 @@ public class AddIfMaxCommand extends CollectionCommand {
 
   @Override
   public void execute(List<String> args) {
-    MusicBand band = new MusicBandBuilder(manager.getChannel()).getElement();
+    MusicBand band =
+        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true)
+            .getElement();
     boolean isMax = true;
     for (MusicBand musicBand : collection.getListOfElements()) {
       if (musicBand.getAlbumsCount() >= band.getAlbumsCount()) {
@@ -23,8 +25,8 @@ public class AddIfMaxCommand extends CollectionCommand {
     }
     if (isMax) {
       collection.add(band);
-      manager.getChannel().sendStringLine("Элемент добавлен в коллекцию");
-    } else manager.getChannel().sendStringLine("Элемент не добавлен в коллекцию");
+      manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
+    } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");
   }
 
   @Override

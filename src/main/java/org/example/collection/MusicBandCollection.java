@@ -21,7 +21,7 @@ public class MusicBandCollection {
   public static long generateId() {
     Random random = new Random();
     long newId;
-    do{
+    do {
       newId = random.nextLong();
     } while (idSet.contains(newId));
     return newId;
@@ -42,11 +42,11 @@ public class MusicBandCollection {
     return creationTime;
   }
 
-  public void setCreationTime(LocalDateTime dateTime){
+  public void setCreationTime(LocalDateTime dateTime) {
     this.creationTime = dateTime;
   }
 
-  public void setUpdateTime(LocalDateTime dateTime){
+  public void setUpdateTime(LocalDateTime dateTime) {
     this.updateTime = dateTime;
   }
 

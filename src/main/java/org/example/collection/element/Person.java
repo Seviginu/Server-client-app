@@ -1,9 +1,7 @@
 package org.example.collection.element;
 
-import org.example.collection.Printable;
-
-import java.lang.reflect.Field;
 import java.util.Objects;
+import org.example.collection.Printable;
 
 public class Person extends Printable {
   private String name; // Поле не может быть null, Строка не может быть пустой

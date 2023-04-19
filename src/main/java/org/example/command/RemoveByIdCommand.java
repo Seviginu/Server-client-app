@@ -1,8 +1,7 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-
 import java.util.List;
+import org.example.collection.MusicBandCollection;
 
 public class RemoveByIdCommand extends CollectionCommand {
 

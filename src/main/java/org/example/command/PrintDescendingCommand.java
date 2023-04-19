@@ -1,11 +1,10 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-import org.example.collection.element.MusicBand;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import org.example.collection.MusicBandCollection;
+import org.example.collection.element.MusicBand;
 
 public class PrintDescendingCommand extends CollectionCommand {
   public PrintDescendingCommand(MusicBandCollection collection, CommandManager manager) {
@@ -17,7 +16,7 @@ public class PrintDescendingCommand extends CollectionCommand {
     ArrayList<MusicBand> bands = new ArrayList<>(collection.getListOfElements());
     bands.sort(Comparator.comparing(MusicBand::getName));
     for (int i = bands.size() - 1; i >= 0; i--) {
-      manager.getChannel().sendString(bands.get(i).toString());
+      manager.getOutputChannel().sendString(bands.get(i).toString());
     }
   }
 

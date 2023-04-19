@@ -12,9 +12,8 @@ public class HistoryCommand extends UserCommand {
     int counter = 0;
     for (String commandName : manager.getCommandsHistory()) {
       if (counter++ >= 11) return;
-      manager.getChannel().sendStringLine(commandName);
+      manager.getOutputChannel().sendStringLine(commandName);
     }
-    ;
   }
 
   @Override

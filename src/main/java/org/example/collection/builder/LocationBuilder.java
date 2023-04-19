@@ -1,6 +1,5 @@
 package org.example.collection.builder;
 
-import com.sun.source.tree.ForLoopTree;
 import org.example.cli.ConsoleUserAsker;
 import org.example.cli.UserChannel;
 import org.example.cli.UserInputChannel;

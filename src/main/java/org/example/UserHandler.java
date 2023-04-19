@@ -1,12 +1,9 @@
 package org.example;
 
-import org.example.cli.UserChannel;
-import org.example.command.CommandManager;
-import org.example.command.exceptions.CommandNotFoundException;
-import org.example.parser.FileManager;
-
 import java.util.Arrays;
 import java.util.List;
+import org.example.cli.UserChannel;
+import org.example.command.CommandManager;
 
 public class UserHandler {
   private final UserChannel channel;

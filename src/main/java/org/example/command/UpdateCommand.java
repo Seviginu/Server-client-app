@@ -1,10 +1,9 @@
 package org.example.command;
 
+import java.util.List;
 import org.example.collection.MusicBandCollection;
 import org.example.collection.builder.MusicBandBuilder;
 import org.example.command.exceptions.WrongArgumentException;
-
-import java.util.List;
 
 public class UpdateCommand extends CollectionCommand {
 
@@ -24,7 +23,7 @@ public class UpdateCommand extends CollectionCommand {
       throw new WrongArgumentException("Аргумент id должен быть числом");
     }
     MusicBandBuilder builder =
-        new MusicBandBuilder(manager.getChannel(), collection.getElement(id));
+        new MusicBandBuilder(manager.getInputChannel(), manager.getOutputChannel(), true);
     collection.updateElement(id, builder.getElement());
   }
 

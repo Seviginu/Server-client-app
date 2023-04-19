@@ -1,8 +1,7 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-
 import java.util.List;
+import org.example.collection.MusicBandCollection;
 
 public class ClearCommand extends CollectionCommand {
   public ClearCommand(MusicBandCollection collection, CommandManager manager) {

@@ -1,11 +1,10 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-import org.example.collection.element.MusicBand;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.example.collection.MusicBandCollection;
+import org.example.collection.element.MusicBand;
 
 public class PrintUniqueParticipantsCommand extends CollectionCommand {
 
@@ -19,7 +18,7 @@ public class PrintUniqueParticipantsCommand extends CollectionCommand {
     for (MusicBand band : collection.getListOfElements())
       numbersOfParticipants.add(band.getNumberOfParticipants());
     for (Integer number : numbersOfParticipants) {
-      manager.getChannel().sendString(number.toString());
+      manager.getOutputChannel().sendString(number.toString());
     }
   }
 

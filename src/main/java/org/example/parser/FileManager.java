@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import org.example.collection.MusicBandCollection;
 
 public class FileManager {
-  private File file;
+  private final File file;
   private final Gson gson;
 
   public FileManager(File file) {

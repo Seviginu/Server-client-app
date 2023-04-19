@@ -3,7 +3,6 @@ package org.example.collection.builder;
 import org.example.cli.UserChannel;
 import org.example.cli.UserInputChannel;
 import org.example.cli.UserOutputChannel;
-import org.example.collection.element.MusicBand;
 
 public abstract class Builder<T> {
   protected T element;

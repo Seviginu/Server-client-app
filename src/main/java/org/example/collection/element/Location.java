@@ -1,8 +1,7 @@
 package org.example.collection.element;
 
-import org.example.collection.Printable;
-
 import java.util.Objects;
+import org.example.collection.Printable;
 
 public class Location extends Printable {
   private long x; // Максимальное значение поля: 258

@@ -1,8 +1,7 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-
 import java.util.List;
+import org.example.collection.MusicBandCollection;
 
 public class RemoveHeadCommand extends CollectionCommand {
   public RemoveHeadCommand(MusicBandCollection collection, CommandManager manager) {
@@ -12,7 +11,7 @@ public class RemoveHeadCommand extends CollectionCommand {
   @Override
   public void execute(List<String> args) {
     if (collection.getListOfElements().size() == 0) return;
-    manager.getChannel().sendString(collection.getListOfElements().remove(0).toString());
+    manager.getOutputChannel().sendString(collection.getListOfElements().remove(0).toString());
   }
 
   @Override

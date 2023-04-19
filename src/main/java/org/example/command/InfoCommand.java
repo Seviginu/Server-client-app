@@ -1,8 +1,7 @@
 package org.example.command;
 
-import org.example.collection.MusicBandCollection;
-
 import java.util.List;
+import org.example.collection.MusicBandCollection;
 
 public class InfoCommand extends CollectionCommand {
   public InfoCommand(MusicBandCollection collection, CommandManager manager) {
@@ -18,7 +17,7 @@ public class InfoCommand extends CollectionCommand {
             + collection.getUpdateTime()
             + "\nКоличество элементов в коллекции: "
             + collection.getListOfElements().size();
-    manager.getChannel().sendStringLine(string);
+    manager.getOutputChannel().sendStringLine(string);
   }
 
   @Override
