@@ -1,11 +1,13 @@
 package org.example.collection.builder;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import org.example.collection.element.Color;
 import org.example.collection.element.Country;
 import org.example.collection.element.MusicGenre;
+import org.example.parser.FileManager;
 
 public class Validators {
 
@@ -232,5 +234,15 @@ public class Validators {
             o -> Objects.nonNull(o) && !o.isEmpty(),
             o -> o,
             "Поле location.name не может быть пустым");
+  }
+
+  public static StringValidator<FileManager> getFileSaverValidator(){
+      ValidatorGenerator<FileManager> generator = new ValidatorGenerator<>();
+      return (StringValidator<FileManager>)
+              generator.getStringValidator(
+                      o -> o.isExist() && o.writable(),
+                      o -> new FileManager(new File(o)),
+                      "Файл не существует или закрыт для записи"
+              );
   }
 }

@@ -1,9 +1,11 @@
 package org.example.cli;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.Scanner;
 
 public class ConsoleChannel implements UserChannel {
-  private final Scanner scanner;
+  private Scanner scanner;
 
   public ConsoleChannel() {
     scanner = new Scanner(System.in);
@@ -11,7 +13,12 @@ public class ConsoleChannel implements UserChannel {
 
   @Override
   public String getString() {
-    return scanner.nextLine();
+    try{
+      return scanner.nextLine();
+    }
+    catch (Exception e){
+      throw new UncheckedIOException(new IOException("Не удалось считать строку"));
+    }
   }
 
   @Override

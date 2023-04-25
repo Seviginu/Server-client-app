@@ -2,7 +2,12 @@ package org.example.command;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.example.cli.ConsoleUserAsker;
 import org.example.collection.MusicBandCollection;
+import org.example.collection.builder.StringValidator;
+import org.example.collection.builder.Validators;
+import org.example.command.exceptions.SaveException;
 import org.example.parser.FileManager;
 
 public class SaveCommand extends FileCommand {
@@ -14,9 +19,17 @@ public class SaveCommand extends FileCommand {
   @Override
   public void execute(List<String> args) {
     try {
+      if (!file.isExist() || !file.readable()){
+        StringValidator<FileManager> validator = Validators.getFileSaverValidator();
+        ConsoleUserAsker<FileManager> asker = new ConsoleUserAsker<>();
+        FileManager value = asker.askUser(validator, manager.getInputChannel(), 3);
+        if(value == null){
+          throw new IOException("Неверно введено значение");
+        }
+      }
       file.objToJson(collection);
     } catch (IOException e) {
-      System.out.println(e.getMessage());
+      throw new SaveException("Не удалось сохранить коллекцию", e);
     }
   }
 

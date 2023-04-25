@@ -18,9 +18,12 @@ public class UserHandler {
     channel.sendStringLine(
         "Программа готова к вводу команд. Введите help для просмотра списка команд");
     while (true) {
+
       channel.sendString(">> ");
+      String inputString;
+      inputString = channel.getString();
       List<String> message =
-          new java.util.ArrayList<>(Arrays.stream(channel.getString().split(" ")).toList());
+          new java.util.ArrayList<>(Arrays.stream(inputString.split(" ", 1)).toList());
       if (message.size() == 0) continue;
       String name = message.remove(0);
       if (name.equals("exit")) break;

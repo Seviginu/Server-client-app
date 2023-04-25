@@ -17,6 +17,10 @@ public class FileManager {
     gson = builder.create();
   }
 
+  public boolean isExist(){
+    return file.exists() && file.isFile();
+  }
+
   public boolean readable() {
     return file.canRead();
   }
