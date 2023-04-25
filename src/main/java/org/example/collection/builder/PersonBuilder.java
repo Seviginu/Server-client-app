@@ -6,12 +6,8 @@ import org.example.cli.UserInputChannel;
 import org.example.cli.UserOutputChannel;
 import org.example.collection.element.Color;
 import org.example.collection.element.Country;
-import org.example.collection.element.MusicGenre;
 import org.example.collection.element.Person;
 import org.example.collection.exceptions.BuildException;
-
-import java.util.Objects;
-import java.util.function.Function;
 
 public class PersonBuilder extends Builder<Person> {
 

@@ -13,7 +13,9 @@ public abstract class Printable {
       try {
         field.setAccessible(true);
         Object value = field.get(this);
-        if (value instanceof Printable) stringBuilder.append(ANSI_GREEN);
+        if (value instanceof Printable) {
+          stringBuilder.append(ANSI_GREEN);
+        }
         stringBuilder.append(field.getName()).append(": ");
         stringBuilder.append(ANSI_RESET);
         if (value instanceof Printable) stringBuilder.append("\n");
@@ -22,6 +24,6 @@ public abstract class Printable {
         e.printStackTrace();
       }
     }
-    return stringBuilder.deleteCharAt(stringBuilder.length() - 1).toString();
+    return stringBuilder.deleteCharAt(stringBuilder.length() - 1).toString().strip();
   }
 }

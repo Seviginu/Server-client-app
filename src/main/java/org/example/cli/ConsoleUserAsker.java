@@ -1,8 +1,7 @@
 package org.example.cli;
 
-import org.example.collection.builder.StringValidator;
-
 import java.util.Scanner;
+import org.example.collection.builder.StringValidator;
 
 public class ConsoleUserAsker<T> implements UserAsker<T> {
   @Override

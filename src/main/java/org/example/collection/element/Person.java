@@ -8,6 +8,7 @@ public class Person extends Printable {
   private Float height; // Поле может быть null, Значение поля должно быть больше 0
   private Color hairColor; // Поле не может быть null
   private Country nationality; // Поле не может быть null
+  private Location location; // Поле не может быть null
 
   public String getName() {
     return name;
@@ -49,8 +50,6 @@ public class Person extends Printable {
     this.location = location;
   }
 
-  private Location location; // Поле не может быть null
-
   @Override
   public int hashCode() {
     return Objects.hash(name, height, hairColor, nationality, location);
@@ -63,6 +62,7 @@ public class Person extends Printable {
     return name.equals(((Person) o).getName())
         && height.equals(((Person) o).getHeight())
         && hairColor.equals(((Person) o).getHairColor())
-        && nationality.equals(((Person) o).getNationality());
+        && nationality.equals(((Person) o).getNationality())
+        && location.equals(((Person) o).getLocation());
   }
 }

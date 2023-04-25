@@ -24,9 +24,7 @@ public class UpdateCommand extends CollectionCommand {
     }
     MusicBandBuilder builder =
         new MusicBandBuilder(
-            manager.getInputChannel(),
-            manager.getOutputChannel(),
-            !args.contains("-nousermode"));
+            manager.getInputChannel(), manager.getOutputChannel(), !args.contains("-nousermode"));
     collection.updateElement(id, builder.getElement());
   }
 

@@ -11,7 +11,7 @@ public class AddIfMaxCommand extends CollectionCommand {
     super(collection, manager);
   }
 
-  private boolean isMax(MusicBand band){
+  private boolean isMax(MusicBand band) {
     boolean isMaximum = true;
     for (MusicBand musicBand : collection.getListOfElements()) {
       if (musicBand.getAlbumsCount() >= band.getAlbumsCount()) {

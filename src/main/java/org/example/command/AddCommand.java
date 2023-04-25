@@ -13,9 +13,7 @@ public class AddCommand extends CollectionCommand {
   public void execute(List<String> args) {
     MusicBandBuilder builder =
         new MusicBandBuilder(
-            manager.getInputChannel(),
-            manager.getOutputChannel(),
-            !args.contains("-nousermode"));
+            manager.getInputChannel(), manager.getOutputChannel(), !args.contains("-nousermode"));
     collection.add(builder.getElement());
   }
 

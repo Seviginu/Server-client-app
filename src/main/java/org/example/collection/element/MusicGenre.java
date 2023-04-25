@@ -2,8 +2,8 @@ package org.example.collection.element;
 
 public enum MusicGenre {
   ROCK("Рок"),
-  RAP("Реп"),
-  PSYCHEDELIC_CLOUD_RAP("Психоделичский клауд рэп"),
+  RAP("Рэп"),
+  PSYCHEDELIC_CLOUD_RAP("Психоделический клауд рэп"),
   SOUL("Соул"),
   POST_PUNK("Пост панк");
 
