@@ -10,6 +10,9 @@ import org.example.collection.element.MusicGenre;
 import org.example.collection.element.Person;
 import org.example.collection.exceptions.BuildException;
 
+import java.util.Objects;
+import java.util.function.Function;
+
 public class PersonBuilder extends Builder<Person> {
 
   {
@@ -34,28 +37,7 @@ public class PersonBuilder extends Builder<Person> {
       outputChannel.sendStringLine(
           "Введите значение поля name." + " Значение не может быть пустым");
     String value = inputChannel.getString();
-    StringValidator<String> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return validate(value);
-          }
-
-          @Override
-          public String fromString(String value) {
-            return value;
-          }
-
-          @Override
-          public boolean validate(String value) {
-            return value != null && !value.isEmpty();
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние name не может быть пустым";
-          }
-        };
+    StringValidator<String> validator = Validators.getPersonNameValidator();
 
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
@@ -75,27 +57,7 @@ public class PersonBuilder extends Builder<Person> {
           "Введите значение поля height." + " Значение должно быть числом больше 0");
     String stringValue = inputChannel.getString();
     Float value;
-    StringValidator<Float> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validate(Float value) {
-            return value != null && value > 0;
-          }
-
-          @Override
-          public Float fromString(String value) {
-            try {
-              return Float.parseFloat(value);
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние height должно быть числом больше 0";
-          }
-        };
+    StringValidator<Float> validator = Validators.getPersonHeightValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Float> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
@@ -116,33 +78,7 @@ public class PersonBuilder extends Builder<Person> {
       for (Color color : Color.values()) outputChannel.sendStringLine(counter++ + ") " + color);
     }
 
-    StringValidator<Color> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return validate(fromString(value));
-          }
-
-          @Override
-          public Color fromString(String value) {
-            try {
-              int num = Integer.parseInt(value);
-              return Color.values()[num];
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public boolean validate(Color value) {
-            return value != null;
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Число должно быть в диапозоне 0-" + (Color.values().length - 1);
-          }
-        };
+    StringValidator<Color> validator = Validators.getPersonHairColorValidator();
 
     String stringValue = inputChannel.getString();
 
@@ -166,33 +102,7 @@ public class PersonBuilder extends Builder<Person> {
         outputChannel.sendStringLine(counter++ + ") " + country);
     }
 
-    StringValidator<Country> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return validate(fromString(value));
-          }
-
-          @Override
-          public Country fromString(String value) {
-            try {
-              int num = Integer.parseInt(value);
-              return Country.values()[num];
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public boolean validate(Country value) {
-            return value != null;
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Число должно быть в диапозоне 0-" + (MusicGenre.values().length - 1);
-          }
-        };
+    StringValidator<Country> validator = Validators.getPersonNationalityValidator();
 
     String stringValue = inputChannel.getString();
 

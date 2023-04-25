@@ -38,28 +38,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
       outputChannel.sendStringLine(
           "Введите значение поля name." + " Значение не может быть пустым");
     String value = inputChannel.getString();
-    StringValidator<String> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return validate(value);
-          }
-
-          @Override
-          public String fromString(String value) {
-            return value;
-          }
-
-          @Override
-          public boolean validate(String value) {
-            return value != null && !value.isEmpty();
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значение name не может быть пустым";
-          }
-        };
+    StringValidator<String> validator = Validators.getMusicBandNameValidator();
 
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
@@ -77,23 +56,8 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     if (userMode) outputChannel.sendStringLine("Введите значение поля numberOfParticipants");
     String stringValue = inputChannel.getString();
     Integer value;
-    StringValidator<Integer> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validate(Integer value) {
-            return value != null && value > 0;
-          }
+    StringValidator<Integer> validator = Validators.getMusicBandParticipantsValidator();
 
-          @Override
-          public Integer fromString(String value) {
-            return Integer.parseInt(value);
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние numberOfParticipants должно быть положительным";
-          }
-        };
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Integer> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
@@ -113,23 +77,8 @@ public class MusicBandBuilder extends Builder<MusicBand> {
           "Введите значение поля albumsCount." + " Значение должно быть положительным");
     String stringValue = inputChannel.getString();
     Integer value;
-    StringValidator<Integer> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validate(Integer value) {
-            return value != null && value > 0;
-          }
+    StringValidator<Integer> validator = Validators.getMusicBandAlbumsCountValidator();
 
-          @Override
-          public Integer fromString(String value) {
-            return Integer.parseInt(value);
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние albumsCount не может быть пустым";
-          }
-        };
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Integer> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
@@ -148,28 +97,8 @@ public class MusicBandBuilder extends Builder<MusicBand> {
       outputChannel.sendStringLine(
           "Введите значение поля descripion." + " Значение не может быть пустым");
     String value = inputChannel.getString();
-    StringValidator<String> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return !value.isEmpty();
-          }
+    StringValidator<String> validator = Validators.getMusicBandDescriptionValidator();
 
-          @Override
-          public String fromString(String value) {
-            return value;
-          }
-
-          @Override
-          public boolean validate(String value) {
-            return false;
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние description не может быть пустым";
-          }
-        };
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
@@ -190,33 +119,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
         outputChannel.sendStringLine(counter++ + ") " + genre);
     }
 
-    StringValidator<MusicGenre> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validateString(String value) {
-            return validate(fromString(value));
-          }
-
-          @Override
-          public MusicGenre fromString(String value) {
-            try {
-              int num = Integer.parseInt(value);
-              return MusicGenre.values()[num];
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public boolean validate(MusicGenre value) {
-            return value != null;
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Число должно быть в диапозоне 0-" + (MusicGenre.values().length - 1);
-          }
-        };
+    StringValidator<MusicGenre> validator = Validators.getMusicBandGenreValidator();
 
     String stringValue = inputChannel.getString();
 

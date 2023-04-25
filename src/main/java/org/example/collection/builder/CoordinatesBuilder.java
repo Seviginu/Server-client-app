@@ -31,27 +31,7 @@ public class CoordinatesBuilder extends Builder<Coordinates> {
       outputChannel.sendStringLine("Введите значение поля X. Значение должно быть числом");
     String stringValue = inputChannel.getString();
     Double value;
-    StringValidator<Double> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validate(Double value) {
-            return value != null;
-          }
-
-          @Override
-          public Double fromString(String value) {
-            try {
-              return Double.parseDouble(value);
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние X должно быть числом";
-          }
-        };
+    StringValidator<Double> validator = Validators.getCoordinatesXValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Double> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
@@ -70,27 +50,7 @@ public class CoordinatesBuilder extends Builder<Coordinates> {
       outputChannel.sendStringLine("Введите значение поля Y." + " Значение должно быть числом");
     String stringValue = inputChannel.getString();
     Double value;
-    StringValidator<Double> validator =
-        new StringValidator<>() {
-          @Override
-          public boolean validate(Double value) {
-            return value != null;
-          }
-
-          @Override
-          public Double fromString(String value) {
-            try {
-              return Double.parseDouble(value);
-            } catch (Exception e) {
-              return null;
-            }
-          }
-
-          @Override
-          public String getRequirements() {
-            return "Значние Y должно быть числом";
-          }
-        };
+    StringValidator<Double> validator = Validators.getCoordinatesYValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Double> consoleUserAsker = new ConsoleUserAsker<>();
       value = consoleUserAsker.askUser(validator, inputChannel, 3);
