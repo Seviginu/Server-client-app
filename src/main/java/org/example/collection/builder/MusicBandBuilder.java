@@ -7,33 +7,27 @@ import org.example.collection.element.MusicBand;
 import org.example.collection.element.MusicGenre;
 import org.example.collection.exceptions.BuildException;
 
+/** Build {@link MusicBand} object with {@link UserInputChannel} */
 public class MusicBandBuilder extends Builder<MusicBand> {
   {
     element = new MusicBand();
   }
 
-  private boolean newElement = false;
-
-  public MusicBandBuilder(UserChannel channel, MusicBand element) {
-    super(channel, element);
-  }
-
-  public MusicBandBuilder(UserInputChannel inputChannel, MusicBand element) {
-    super(inputChannel, element);
-  }
-
-  public MusicBandBuilder(UserChannel channel) {
-    super(channel);
-    newElement = true;
-  }
-
+  private final boolean newElement;
+  /**
+   * Create a new instance with I/O channels and {@code userMode}
+   *
+   * @param inputChannel channel to get values from user
+   * @param outputChannel channel to send promoting messages to user
+   * @param userMode if false, suppress output messages
+   */
   public MusicBandBuilder(
       UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode) {
     super(inputChannel, outputChannel, userMode);
     newElement = true;
   }
 
-  public void setName() {
+  private void setName() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля name." + " Значение не может быть пустым");
@@ -42,7 +36,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setName(value);
@@ -52,7 +46,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     element.setName(value);
   }
 
-  public void setNumberOfParticipants() {
+  private void setNumberOfParticipants() {
     if (userMode) outputChannel.sendStringLine("Введите значение поля numberOfParticipants");
     String stringValue = inputChannel.getString();
     Integer value;
@@ -60,7 +54,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Integer> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setNumberOfParticipants(value);
@@ -71,7 +65,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     element.setNumberOfParticipants(value);
   }
 
-  public void setAlbumsCount() {
+  private void setAlbumsCount() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля albumsCount." + " Значение должно быть положительным");
@@ -81,7 +75,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Integer> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setAlbumsCount(value);
@@ -92,7 +86,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     element.setAlbumsCount(value);
   }
 
-  public void setDescription() {
+  private void setDescription() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля descripion." + " Значение не может быть пустым");
@@ -101,7 +95,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setDescription(value);
@@ -111,7 +105,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     element.setDescription(value);
   }
 
-  public void setGenre() {
+  private void setGenre() {
     if (userMode) {
       outputChannel.sendStringLine("Введите число для выбора genre:");
       int counter = 0;
@@ -125,7 +119,7 @@ public class MusicBandBuilder extends Builder<MusicBand> {
 
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<MusicGenre> consoleUserAsker = new ConsoleUserAsker<>();
-      MusicGenre value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      MusicGenre value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setGenre(value);
@@ -135,24 +129,29 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     element.setGenre(validator.fromString(stringValue));
   }
 
-  public void setCoordinates() {
+  private void setCoordinates() {
     element.setCoordinates(
         new CoordinatesBuilder(inputChannel, outputChannel, userMode).getElement());
   }
 
-  public void setFrontMan() {
+  private void setFrontMan() {
     element.setFrontMan(new PersonBuilder(inputChannel, outputChannel, userMode).getElement());
   }
 
-  public void setId() {
+  private void setId() {
     element.setId(MusicBandCollection.generateId());
   }
 
-  public void setCreationDate() {
+  private void setCreationDate() {
     LocalDateTime date = LocalDateTime.now();
     element.setCreationDate(date);
   }
 
+  /**
+   * Build {@link MusicBand} object
+   *
+   * @return created coordinates
+   */
   public MusicBand getElement() {
     setName();
     setCoordinates();

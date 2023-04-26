@@ -9,6 +9,7 @@ import org.example.collection.element.Country;
 import org.example.collection.element.MusicGenre;
 import org.example.parser.FileManager;
 
+/** Class that generate validators for different types */
 public class Validators {
 
   private static class ValidatorGenerator<T> {
@@ -236,13 +237,12 @@ public class Validators {
             "Поле location.name не может быть пустым");
   }
 
-  public static StringValidator<FileManager> getFileSaverValidator(){
-      ValidatorGenerator<FileManager> generator = new ValidatorGenerator<>();
-      return (StringValidator<FileManager>)
-              generator.getStringValidator(
-                      o -> o.isExist() && o.writable(),
-                      o -> new FileManager(new File(o)),
-                      "Файл не существует или закрыт для записи"
-              );
+  public static StringValidator<FileManager> getFileSaverValidator() {
+    ValidatorGenerator<FileManager> generator = new ValidatorGenerator<>();
+    return (StringValidator<FileManager>)
+        generator.getStringValidator(
+            o -> o.isExist() && o.writable(),
+            o -> new FileManager(new File(o)),
+            "Файл не существует или закрыт для записи");
   }
 }

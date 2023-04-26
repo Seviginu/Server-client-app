@@ -2,7 +2,6 @@ package org.example.command;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.example.cli.ConsoleUserAsker;
 import org.example.collection.MusicBandCollection;
 import org.example.collection.builder.StringValidator;
@@ -19,11 +18,11 @@ public class SaveCommand extends FileCommand {
   @Override
   public void execute(List<String> args) {
     try {
-      if (!file.isExist() || !file.readable()){
+      if (!file.isExist() || !file.readable()) {
         StringValidator<FileManager> validator = Validators.getFileSaverValidator();
         ConsoleUserAsker<FileManager> asker = new ConsoleUserAsker<>();
-        FileManager value = asker.askUser(validator, manager.getInputChannel(), 3);
-        if(value == null){
+        FileManager value = asker.askUser(validator, 3);
+        if (value == null) {
           throw new IOException("Неверно введено значение");
         }
       }

@@ -50,7 +50,6 @@ public class ExecuteScriptCommand extends UserCommand {
     }
   }
 
-
   private void executionLoop(Set<Path> paths, ScriptFileUserChannel channel) {
     while (!channel.isEmpty()) {
       String string = channel.getString();
@@ -62,7 +61,7 @@ public class ExecuteScriptCommand extends UserCommand {
         if (paths.contains(newPath)) continue;
         paths.add(newPath);
         BufferedReader reader = getReader(newPath);
-        if(reader != null) channel.pushReader(reader);
+        if (reader != null) channel.pushReader(reader);
         continue;
       }
       try {

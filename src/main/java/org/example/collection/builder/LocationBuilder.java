@@ -1,32 +1,30 @@
 package org.example.collection.builder;
 
 import org.example.cli.ConsoleUserAsker;
-import org.example.cli.UserChannel;
 import org.example.cli.UserInputChannel;
 import org.example.cli.UserOutputChannel;
 import org.example.collection.element.Location;
 import org.example.collection.exceptions.BuildException;
 
+/** Build {@link Location} object with {@link UserInputChannel} */
 public class LocationBuilder extends Builder<Location> {
 
   {
     element = new Location();
   }
-
-  public LocationBuilder(UserInputChannel inputChannel, Location element) {
-    super(inputChannel, element);
-  }
-
-  public LocationBuilder(UserChannel channel, Location element) {
-    super(channel, element);
-  }
-
+  /**
+   * Create a new instance with I/O channels and {@code userMode}
+   *
+   * @param inputChannel channel to get values from user
+   * @param outputChannel channel to send promoting messages to user
+   * @param userMode if false, suppress output messages
+   */
   public LocationBuilder(
       UserInputChannel inputChannel, UserOutputChannel outputChannel, boolean userMode) {
     super(inputChannel, outputChannel, userMode);
   }
 
-  public void setX() {
+  private void setX() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля X." + " Значение не должно превышать 258");
@@ -35,7 +33,7 @@ public class LocationBuilder extends Builder<Location> {
     StringValidator<Long> validator = Validators.getLocationXValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Long> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setX(value);
@@ -46,7 +44,7 @@ public class LocationBuilder extends Builder<Location> {
     element.setX(value);
   }
 
-  public void setY() {
+  private void setY() {
     if (userMode)
       outputChannel.sendStringLine("Введите значение поля Y." + " Значение должно быть числом");
     String stringValue = inputChannel.getString();
@@ -54,7 +52,7 @@ public class LocationBuilder extends Builder<Location> {
     StringValidator<Float> validator = Validators.getLocationYValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Float> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setY(value);
@@ -65,7 +63,7 @@ public class LocationBuilder extends Builder<Location> {
     element.setY(value);
   }
 
-  public void setZ() {
+  private void setZ() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля Z." + " Значение не должно превышать 258");
@@ -74,7 +72,7 @@ public class LocationBuilder extends Builder<Location> {
     StringValidator<Long> validator = Validators.getLocationZValidator();
     if (!validator.validateString(stringValue)) {
       ConsoleUserAsker<Long> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setZ(value);
@@ -85,7 +83,7 @@ public class LocationBuilder extends Builder<Location> {
     element.setZ(value);
   }
 
-  public void setName() {
+  private void setName() {
     if (userMode)
       outputChannel.sendStringLine(
           "Введите значение поля name." + " Значение не может быть пустым");
@@ -94,7 +92,7 @@ public class LocationBuilder extends Builder<Location> {
 
     if (!validator.validateString(value)) {
       ConsoleUserAsker<String> consoleUserAsker = new ConsoleUserAsker<>();
-      value = consoleUserAsker.askUser(validator, inputChannel, 3);
+      value = consoleUserAsker.askUser(validator, 3);
       if (!validator.validate(value)) throw new BuildException();
       else {
         element.setName(value);
@@ -104,6 +102,11 @@ public class LocationBuilder extends Builder<Location> {
     element.setName(value);
   }
 
+  /**
+   * Build {@link Location} object
+   *
+   * @return created coordinates
+   */
   @Override
   Location getElement() {
     setX();

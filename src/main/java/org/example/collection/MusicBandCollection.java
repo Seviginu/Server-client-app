@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import org.example.collection.element.MusicBand;
 
+/** Class to contain and modify {@link List} of {@link MusicBand} objects */
 public class MusicBandCollection {
   private LocalDateTime creationTime;
   private LocalDateTime updateTime;
@@ -18,6 +19,11 @@ public class MusicBandCollection {
     this.listOfElements = listOfElements;
   }
 
+  /**
+   * Generates a unique id
+   *
+   * @return id
+   */
   public static long generateId() {
     Random random = new Random();
     long newId;
@@ -65,8 +71,8 @@ public class MusicBandCollection {
     return false;
   }
 
-  public MusicBand removeByIndex(int index){
-     return listOfElements.remove(index);
+  public MusicBand removeByIndex(int index) {
+    return listOfElements.remove(index);
   }
 
   public List<MusicBand> getListOfElements() {

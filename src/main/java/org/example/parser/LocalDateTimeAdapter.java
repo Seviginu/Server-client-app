@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/** Adapter of LocalDateTime for gson library */
 public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
 
   @Override
