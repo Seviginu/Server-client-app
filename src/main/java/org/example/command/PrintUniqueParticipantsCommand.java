@@ -18,7 +18,7 @@ public class PrintUniqueParticipantsCommand extends CollectionCommand {
     for (MusicBand band : collection.getListOfElements())
       numbersOfParticipants.add(band.getNumberOfParticipants());
     for (Integer number : numbersOfParticipants) {
-      manager.getOutputChannel().sendString(number.toString());
+      manager.getOutputChannel().sendStringLine(number.toString());
     }
   }
 

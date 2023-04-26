@@ -29,7 +29,7 @@ public class ExecuteScriptCommand extends UserCommand {
     @Override
     public String getString() {
       try {
-        String string = inputStreams.firstElement().readLine();
+        String string = inputStreams.lastElement().readLine();
         if (string == null) popReader().close();
         return string;
       } catch (IOException e) {
@@ -50,17 +50,19 @@ public class ExecuteScriptCommand extends UserCommand {
     }
   }
 
+
   private void executionLoop(Set<Path> paths, ScriptFileUserChannel channel) {
     while (!channel.isEmpty()) {
       String string = channel.getString();
       if (string == null) continue;
-      List<String> command = new ArrayList<>(Arrays.asList(string.split(" ", 1)));
+      List<String> command = new ArrayList<>(Arrays.asList(string.split(" ", 2)));
       String commandName = command.get(0);
       if (commandName.equals("execute_script")) {
-        Path newPath = Paths.get(command.get(0)).toAbsolutePath();
+        Path newPath = Paths.get(command.get(1)).toAbsolutePath();
         if (paths.contains(newPath)) continue;
         paths.add(newPath);
-        channel.pushReader(getReader(newPath));
+        BufferedReader reader = getReader(newPath);
+        if(reader != null) channel.pushReader(reader);
         continue;
       }
       try {

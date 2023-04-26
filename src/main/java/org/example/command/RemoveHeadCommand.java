@@ -10,8 +10,12 @@ public class RemoveHeadCommand extends CollectionCommand {
 
   @Override
   public void execute(List<String> args) {
-    if (collection.getListOfElements().size() == 0) return;
-    manager.getOutputChannel().sendString(collection.getListOfElements().remove(0).toString());
+    if (collection.getListOfElements().size() == 0)
+      manager.getOutputChannel().sendStringLine("В коллекции нет элементов");
+    else
+      manager
+          .getOutputChannel()
+          .sendStringLine("Удален элемент с id = " + collection.removeByIndex(0).getId());
   }
 
   @Override

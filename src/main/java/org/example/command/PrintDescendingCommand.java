@@ -16,7 +16,10 @@ public class PrintDescendingCommand extends CollectionCommand {
     ArrayList<MusicBand> bands = new ArrayList<>(collection.getListOfElements());
     bands.sort(Comparator.comparing(MusicBand::getName));
     for (int i = bands.size() - 1; i >= 0; i--) {
-      manager.getOutputChannel().sendString(bands.get(i).toString());
+      manager
+          .getOutputChannel()
+          .sendStringLine(
+              bands.get(i).toString() + "\n---------------------------------------------------");
     }
   }
 

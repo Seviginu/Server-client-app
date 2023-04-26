@@ -20,6 +20,7 @@ public class MusicBand extends Printable {
   private MusicGenre genre; // Поле может быть null
   private Person frontMan; // Поле не может быть null
 
+
   public void setName(String name) {
     this.name = name;
   }

@@ -21,14 +21,14 @@ public class GroupFrontManCommand extends CollectionCommand {
     String frontManName = bandsList.get(0).getFrontMan().getName();
     for (MusicBand band : bandsList) {
       if (!Objects.equals(band.getFrontMan().getName(), frontManName)) {
-        manager.getOutputChannel().sendString(frontManName + ": " + countOfGroups + "\n");
-        countOfGroups = 1;
+        manager.getOutputChannel().sendStringLine(frontManName + ": " + countOfGroups + "\n");
+        countOfGroups = 0;
         frontManName = band.getFrontMan().getName();
       }
       countOfGroups++;
-      manager.getOutputChannel().sendString(band.toString());
+      manager.getOutputChannel().sendStringLine(band.toString());
     }
-    manager.getOutputChannel().sendString(frontManName + ": " + countOfGroups + "\n");
+    manager.getOutputChannel().sendStringLine(frontManName + ": " + countOfGroups + "\n");
   }
 
   @Override

@@ -23,7 +23,7 @@ public class UserHandler {
       String inputString;
       inputString = channel.getString();
       List<String> message =
-          new java.util.ArrayList<>(Arrays.stream(inputString.split(" ", 1)).toList());
+          new java.util.ArrayList<>(Arrays.stream(inputString.split(" ", 2)).toList());
       if (message.size() == 0) continue;
       String name = message.remove(0);
       if (name.equals("exit")) break;

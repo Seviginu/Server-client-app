@@ -22,7 +22,7 @@ public class MusicBandCollection {
     Random random = new Random();
     long newId;
     do {
-      newId = random.nextLong();
+      newId = Math.abs(random.nextLong());
     } while (idSet.contains(newId));
     return newId;
   }
@@ -65,8 +65,12 @@ public class MusicBandCollection {
     return false;
   }
 
+  public MusicBand removeByIndex(int index){
+     return listOfElements.remove(index);
+  }
+
   public List<MusicBand> getListOfElements() {
-    return new ArrayList<MusicBand>(listOfElements);
+    return new ArrayList<>(listOfElements);
   }
 
   public MusicBand getElement(Long id) {

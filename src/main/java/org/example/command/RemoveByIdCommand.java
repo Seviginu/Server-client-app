@@ -11,7 +11,17 @@ public class RemoveByIdCommand extends CollectionCommand {
 
   @Override
   public void execute(List<String> args) {
-    collection.remove(Integer.parseInt(args.get(0)));
+    if (args.isEmpty()) {
+      manager.getOutputChannel().sendStringLine("Не указан id");
+      return;
+    }
+    try {
+      if (collection.remove(Long.parseLong(args.get(0))))
+        manager.getOutputChannel().sendStringLine("Элемент успешно удален");
+      else manager.getOutputChannel().sendStringLine("Элемент с указанным id не найден");
+    } catch (NumberFormatException e) {
+      manager.getOutputChannel().sendStringLine("id должен быть числом");
+    }
   }
 
   @Override
@@ -21,6 +31,6 @@ public class RemoveByIdCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "remove_by_id id";
+    return "remove_by_id";
   }
 }
