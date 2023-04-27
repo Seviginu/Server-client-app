@@ -13,7 +13,7 @@ public abstract class Printable {
   private static final String ANSI_RESET = "\u001B[0m";
 
   /**
-   * Display object with indent. Every line starts with "--"*{@code indent}
+   * Display object with indent. Each line starts with {@code "--"*indent}
    *
    * @param indent size of indent
    * @return string display of object

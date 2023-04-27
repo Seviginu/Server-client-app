@@ -10,9 +10,16 @@ public class Coordinates extends Printable {
   public void setX(Double x) {
     this.x = x;
   }
+  public double getX() {
+    return x;
+  }
 
   public void setY(Double y) {
     this.y = y;
+  }
+
+  public double getY() {
+    return y;
   }
 
   @Override

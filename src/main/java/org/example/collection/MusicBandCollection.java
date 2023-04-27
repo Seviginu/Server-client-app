@@ -2,6 +2,8 @@ package org.example.collection;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
+import org.example.collection.builder.Validators;
 import org.example.collection.element.MusicBand;
 
 /** Class to contain and modify {@link List} of {@link MusicBand} objects */
@@ -31,6 +33,26 @@ public class MusicBandCollection {
       newId = Math.abs(random.nextLong());
     } while (idSet.contains(newId));
     return newId;
+  }
+
+
+  public int removeUnvalidElems(){
+    HashSet<Long> idSet = new HashSet<>();
+    int deleteItemsCount = 0;
+    ArrayList<Integer> itemsToRemove = new ArrayList<>();
+    for (int i = 0; i < listOfElements.size(); ++i){
+      if(idSet.contains(listOfElements.get(i).getId()) ||
+              !Validators.getMusicBandValidator().validate(listOfElements.get(i))) {
+        itemsToRemove.add(i);
+        deleteItemsCount++;
+      }
+      idSet.add(listOfElements.get(i).getId());
+    }
+    int offset = 0;
+    for(int itemId : itemsToRemove){
+      listOfElements.remove(itemId - offset++);
+    }
+    return deleteItemsCount;
   }
 
   public void add(MusicBand band) {

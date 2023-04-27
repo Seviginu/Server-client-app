@@ -30,8 +30,7 @@ public class AddIfMaxCommand extends CollectionCommand {
                 manager.getOutputChannel(),
                 !args.contains("-nousermode"))
             .getElement();
-    boolean isMaximum = isMax(band);
-    if (isMaximum) {
+    if (isMax(band)) {
       collection.add(band);
       manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
     } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");

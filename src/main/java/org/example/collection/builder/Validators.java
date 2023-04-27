@@ -4,9 +4,8 @@ import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import org.example.collection.element.Color;
-import org.example.collection.element.Country;
-import org.example.collection.element.MusicGenre;
+
+import org.example.collection.element.*;
 import org.example.parser.FileManager;
 
 /** Class that generate validators for different types */
@@ -54,7 +53,7 @@ public class Validators {
                 return null;
               }
             },
-            "Поле numberOfParticipants не может быть пустым");
+            "Поле numberOfParticipants должно быть числом");
   }
 
   public static StringValidator<Integer> getMusicBandAlbumsCountValidator() {
@@ -94,7 +93,7 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + MusicGenre.values().length);
+            "Значение должно быть в диапазоне 0-" + (MusicGenre.values().length-1));
   }
 
   public static StringValidator<Double> getCoordinatesXValidator() {
@@ -164,7 +163,7 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + Color.values().length);
+            "Значение должно быть в диапазоне 0-" + (Color.values().length-1));
   }
 
   public static StringValidator<Country> getPersonNationalityValidator() {
@@ -180,14 +179,14 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + Country.values().length);
+            "Значение должно быть в диапазоне 0-" + (Country.values().length-1));
   }
 
   public static StringValidator<Long> getLocationXValidator() {
     ValidatorGenerator<Long> generator = new ValidatorGenerator<>();
     return (StringValidator<Long>)
         generator.getStringValidator(
-            Objects::nonNull,
+            o -> Objects.nonNull(o) && o < 258,
             o -> {
               try {
                 return Long.parseLong(o);
@@ -244,5 +243,79 @@ public class Validators {
             o -> o.isExist() && o.writable(),
             o -> new FileManager(new File(o)),
             "Файл не существует или закрыт для записи");
+  }
+
+  public static Validator<Location> getLocationValidator(){
+      return new Validator<Location>() {
+          @Override
+          public boolean validate(Location value) {
+              return value != null &&
+                      getLocationXValidator().validate(value.getX()) &&
+                      getLocationYValidator().validate(value.getY()) &&
+                      getLocationZValidator().validate(value.getZ()) &&
+                      getLocationNameValidator().validate(value.getName());
+          }
+
+          @Override
+          public String getRequirements() {
+              return null;
+          }
+      };
+  }
+
+  public static Validator<Person> getPersonValidator(){
+      return new Validator<>() {
+          @Override
+          public boolean validate(Person value) {
+              return value != null &&
+                      getPersonNameValidator().validate(value.getName()) &&
+                      getPersonHeightValidator().validate(value.getHeight()) &&
+                      getPersonHairColorValidator().validate(value.getHairColor()) &&
+                      getPersonNationalityValidator().validate(value.getNationality()) &&
+                      getLocationValidator().validate(value.getLocation());
+          }
+
+          @Override
+          public String getRequirements() {
+              return null;
+          }
+      };
+  }
+
+  public static Validator<Coordinates> getCoordinatesValidator(){
+      return new Validator<>() {
+          @Override
+          public boolean validate(Coordinates value) {
+              return value != null &&
+                      getCoordinatesXValidator().validate(value.getX()) &&
+                      getCoordinatesYValidator().validate(value.getY());
+          }
+
+          @Override
+          public String getRequirements() {
+              return null;
+          }
+      };
+  }
+
+  public static Validator<MusicBand> getMusicBandValidator(){
+      return new Validator<>() {
+          @Override
+          public boolean validate(MusicBand value) {
+              return value != null &&
+                      getMusicBandNameValidator().validate(value.getName()) &&
+                      getMusicBandParticipantsValidator().validate(value.getNumberOfParticipants()) &&
+                      getMusicBandDescriptionValidator().validate(value.getDescription()) &&
+                      getMusicBandGenreValidator().validate(value.getGenre()) &&
+                      getMusicBandAlbumsCountValidator().validate(value.getAlbumsCount()) &&
+                      getCoordinatesValidator().validate(value.getCoordinates()) &&
+                      getPersonValidator().validate(value.getFrontMan());
+          }
+
+          @Override
+          public String getRequirements() {
+              return null;
+          }
+      };
   }
 }
