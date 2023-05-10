@@ -1,7 +1,6 @@
 package org.example.command;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -73,14 +72,9 @@ public class ExecuteScriptCommand extends UserCommand {
     }
   }
 
-  private boolean valideFile(String filePath){
-    return new File(filePath).canRead();
-  }
-
   @Override
   public void execute(List<String> args) {
     if (args.size() == 0) throw new WrongArgumentException("Не указан путь до файла");
-    if(!valideFile(args.get(0))) throw new WrongArgumentException("Невозможно прочитать файл скрипта");
     Set<Path> paths = new HashSet<>();
     Path path = Paths.get(args.get(0)).toAbsolutePath();
     paths.add(path);
