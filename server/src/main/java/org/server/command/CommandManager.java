@@ -13,7 +13,7 @@ import org.server.command.commands.Command;
 import org.server.command.commands.ElementCommand;
 import org.server.command.exceptions.CommandNotFoundException;
 import request.CommandPackage;
-import request.RequestManager;
+import org.server.request.RequestManager;
 
 public class CommandManager {
 

@@ -1,7 +1,7 @@
 package org.server.cli;
 
 import request.Request;
-import request.RequestManager;
+import org.server.request.RequestManager;
 import request.RequestType;
 import request.TextRequest;
 
