@@ -1,6 +1,6 @@
-package org.server.cli;
+package org.server.userIO;
 
-import org.server.collection.builder.StringValidator;
+import collection.builder.StringValidator;
 
 /**
  * {@code UserAsker} is used if you need to get correct data from the user.

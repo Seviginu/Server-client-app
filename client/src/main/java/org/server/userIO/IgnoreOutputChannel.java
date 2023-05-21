@@ -1,9 +1,8 @@
-package org.server.cli;
+package org.server.userIO;
 
-/**
- * Instead of send strings,just do nothing. Can be helpful, when you won't get {@link
- * org.server.command.Command} output
- */
+import IO.UserOutputChannel;
+
+/** Instead of send strings,just do nothing. Can be helpful, when you won't get */
 public class IgnoreOutputChannel implements UserOutputChannel {
 
   /** Do nothing */

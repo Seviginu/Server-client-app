@@ -10,7 +10,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-
 public class RequestManager {
   private final ServerSocket channel;
   private final Logger logger = LogManager.getLogger("org.server.request.RequestManager");

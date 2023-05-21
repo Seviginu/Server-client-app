@@ -1,6 +1,8 @@
 package request;
 
 public class Requests {
+    public static final String GET_COLLECTION_REQUEST = "get_collection";
+
     public static Request<String> getErrorRequest(String message){
         return new Request<>() {
             @Override
@@ -14,4 +16,6 @@ public class Requests {
             }
         };
     }
+
+
 }

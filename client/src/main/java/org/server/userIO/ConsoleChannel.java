@@ -1,5 +1,6 @@
-package org.server.cli;
+package org.server.userIO;
 
+import IO.UserChannel;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class ConsoleChannel implements UserChannel {
   private final Scanner scanner = new Scanner(System.in);
 
-    /**
+  /**
    * Returns the user's input string
    *
    * @return input string

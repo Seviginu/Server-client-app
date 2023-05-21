@@ -1,7 +1,7 @@
-package org.server.cli;
+package org.server.userIO;
 
+import collection.builder.StringValidator;
 import java.util.Scanner;
-import org.server.collection.builder.StringValidator;
 
 /**
  * {@code ConsoleUserAsker} is used if you need to get correct data from standard system input
