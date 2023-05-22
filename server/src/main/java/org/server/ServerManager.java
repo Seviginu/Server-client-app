@@ -19,7 +19,6 @@ public class ServerManager {
     try (ServerSocket server = new ServerSocket()) {
       server.bind(new InetSocketAddress(7566));
       RequestManager manager = new RequestManager(server);
-      NetworkUserChannel channel = new NetworkUserChannel(manager);
       CommandManager commandManager = new CommandManager(manager);
       FileManager fileManager =
           new FileManager(
@@ -29,8 +28,13 @@ public class ServerManager {
       logger.info("Server ready");
 
       while (!server.isClosed()) {
-        CommandPackage commandPackage = manager.getRequest();
-        commandManager.executeCommand(commandPackage);
+        try{
+          CommandPackage commandPackage = manager.getRequest();
+          commandManager.executeCommand(commandPackage);
+        }
+        catch (Exception e){
+          commandManager.getOutputChannel().sendStringLine(e.getMessage());
+        }
       }
     } catch (IOException e) {
       e.printStackTrace();

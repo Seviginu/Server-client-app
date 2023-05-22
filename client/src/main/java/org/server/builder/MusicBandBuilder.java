@@ -164,10 +164,6 @@ public class MusicBandBuilder extends Builder<MusicBand> {
     setDescription();
     setGenre();
     setFrontMan();
-    if (newElement) {
-      setCreationDate();
-      setId();
-    }
     return element;
   }
 }

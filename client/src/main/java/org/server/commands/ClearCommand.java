@@ -1,6 +1,7 @@
 package org.server.commands;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
 
@@ -14,7 +15,7 @@ public class ClearCommand extends CollectionCommand {
     try {
       requestManager.sendTextRequest(getName());
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new UncheckedIOException(e);
     }
   }
 

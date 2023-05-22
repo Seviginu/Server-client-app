@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.MusicBandCollection;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
 
@@ -16,8 +17,7 @@ public class InfoCommand extends CollectionCommand {
     try {
       collection = requestManager.getCollection();
     } catch (IOException e) {
-      e.printStackTrace();
-      return;
+      throw new UncheckedIOException(e);
     }
     String string =
         "Время создания: "

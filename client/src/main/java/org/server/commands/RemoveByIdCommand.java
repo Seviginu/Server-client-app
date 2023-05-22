@@ -1,6 +1,7 @@
 package org.server.commands;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
 import request.CommandPackage;
@@ -27,7 +28,7 @@ public class RemoveByIdCommand extends CollectionCommand {
     } catch (NumberFormatException e) {
       manager.getOutputChannel().sendStringLine("id должен быть числом");
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new UncheckedIOException(e);
     }
   }
 

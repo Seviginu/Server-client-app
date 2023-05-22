@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.element.MusicBand;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
 
@@ -19,7 +20,7 @@ public class ShowCommand extends CollectionCommand {
             .sendStringLine(band + "\n---------------------------------------------------");
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new UncheckedIOException(e);
     }
   }
 

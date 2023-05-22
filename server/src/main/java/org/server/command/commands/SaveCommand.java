@@ -23,6 +23,7 @@ public class SaveCommand extends FileCommand {
         throw new IOException("Неверно введено значение");
       }
       file.objToJson(collection);
+
     } catch (IOException e) {
       throw new SaveException("Не удалось сохранить коллекцию", e);
     }

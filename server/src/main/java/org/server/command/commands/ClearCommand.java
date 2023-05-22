@@ -12,6 +12,7 @@ public class ClearCommand extends CollectionCommand {
   @Override
   public void execute(List<String> args) {
     collection.clear();
+    manager.getOutputChannel().sendStringLine("Коллекция очищена");
   }
 
   @Override

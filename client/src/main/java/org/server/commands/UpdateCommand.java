@@ -1,6 +1,7 @@
 package org.server.commands;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.builder.MusicBandBuilder;
 import org.server.commands.exceptions.WrongArgumentException;
@@ -32,7 +33,7 @@ public class UpdateCommand extends CollectionCommand {
           new CommandPackage(getName(), new Object[] {id, builder.getElement()}));
       manager.getOutputChannel().sendStringLine(requestManager.receiveMessage());
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new UncheckedIOException(e);
     }
   }
 

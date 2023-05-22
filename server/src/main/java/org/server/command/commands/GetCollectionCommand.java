@@ -3,6 +3,8 @@ package org.server.command.commands;
 import collection.MusicBandCollection;
 import java.io.IOException;
 import java.util.List;
+
+import org.server.cli.NetworkUserChannel;
 import org.server.command.CommandManager;
 import request.GetObjectRequest;
 import request.RequestType;
@@ -14,14 +16,8 @@ public class GetCollectionCommand extends CollectionCommand {
 
   @Override
   public void execute(List<String> args) {
-    try {
-
-      manager
-          .getRequestManager()
-          .sendResponse(new GetObjectRequest<MusicBandCollection>(collection, RequestType.OK));
-    } catch (IOException e) {
-      logger.error(e);
-    }
+    NetworkUserChannel networkUserChannel = (NetworkUserChannel) manager.getOutputChannel();
+    networkUserChannel.sendResponse(new GetObjectRequest<>(collection, RequestType.OK));
   }
 
   @Override

@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.element.MusicBand;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -19,8 +20,7 @@ public class GroupFrontManCommand extends CollectionCommand {
     try {
       bandsList = new ArrayList<>(requestManager.getCollection().getListOfElements());
     } catch (IOException e) {
-      e.printStackTrace();
-      return;
+      throw new UncheckedIOException(e);
     }
     bandsList.sort(Comparator.comparing(o -> o.getFrontMan().getName()));
     if (bandsList.size() == 0) return;

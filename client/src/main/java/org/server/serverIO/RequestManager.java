@@ -23,6 +23,9 @@ public class RequestManager {
       ObjectOutputStream output = new ObjectOutputStream(socket.socket().getOutputStream());
       output.writeObject(request);
     }
+    catch (IOException e){
+      throw new IOException("Server not available");
+    }
   }
 
   public MusicBandCollection receiveCollection() throws IOException {
@@ -31,7 +34,7 @@ public class RequestManager {
       ObjectInputStream input = new ObjectInputStream(socket.socket().getInputStream());
       GetObjectRequest<MusicBandCollection> response =
           (GetObjectRequest<MusicBandCollection>) input.readObject();
-      if (response.type() == RequestType.OK) return response.content();
+      if (response.type() == RequestType.OK) return this.cachedCollection = response.content();
     } catch (ClassNotFoundException ignored) {
     }
     throw new IOException("Can't receive response");

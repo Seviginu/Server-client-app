@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.element.MusicBand;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,8 +21,7 @@ public class PrintUniqueParticipantsCommand extends CollectionCommand {
       for (MusicBand band : requestManager.getCollection().getListOfElements())
         numbersOfParticipants.add(band.getNumberOfParticipants());
     } catch (IOException e) {
-      e.printStackTrace();
-      return;
+      throw new UncheckedIOException(e);
     }
     for (Integer number : numbersOfParticipants) {
       manager.getOutputChannel().sendStringLine(number.toString());

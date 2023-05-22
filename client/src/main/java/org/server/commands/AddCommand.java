@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.element.MusicBand;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.builder.MusicBandBuilder;
 import org.server.serverIO.RequestManager;
@@ -23,7 +24,7 @@ public class AddCommand extends CollectionCommand {
       requestManager.sendRequest(commandPackage);
       manager.getOutputChannel().sendStringLine(requestManager.receiveMessage());
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new UncheckedIOException(e);
     }
   }
 

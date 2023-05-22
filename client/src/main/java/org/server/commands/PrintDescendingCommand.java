@@ -2,6 +2,7 @@ package org.server.commands;
 
 import collection.element.MusicBand;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,8 +19,7 @@ public class PrintDescendingCommand extends CollectionCommand {
     try {
       bands = new ArrayList<>(requestManager.getCollection().getListOfElements());
     } catch (IOException e) {
-      e.printStackTrace();
-      return;
+      throw new UncheckedIOException(e);
     }
     bands.sort(Comparator.comparing(MusicBand::getName));
     for (int i = bands.size() - 1; i >= 0; i--) {
