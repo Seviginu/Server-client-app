@@ -3,6 +3,7 @@ package org.server.command.commands;
 import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
+import org.server.command.exceptions.CommandNotFoundException;
 
 public class ClearCommand extends CollectionCommand {
   public ClearCommand(MusicBandCollection collection, CommandManager manager) {
@@ -12,6 +13,10 @@ public class ClearCommand extends CollectionCommand {
   @Override
   public void execute(List<String> args) {
     collection.clear();
+    try{
+      manager.executeCommand("save");
+    }
+    catch (CommandNotFoundException ignore){}
     manager.getOutputChannel().sendStringLine("Коллекция очищена");
   }
 

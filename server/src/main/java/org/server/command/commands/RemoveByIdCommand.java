@@ -3,6 +3,7 @@ package org.server.command.commands;
 import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
+import org.server.command.exceptions.CommandNotFoundException;
 
 public class RemoveByIdCommand extends CollectionCommand {
 
@@ -17,8 +18,13 @@ public class RemoveByIdCommand extends CollectionCommand {
       return;
     }
     try {
-      if (collection.remove(Long.parseLong(args.get(0))))
+      if (collection.remove(Long.parseLong(args.get(0)))) {
         manager.getOutputChannel().sendStringLine("Элемент успешно удален");
+        try{
+          manager.executeCommand("save");
+        }
+        catch (CommandNotFoundException ignore){}
+        }
       else manager.getOutputChannel().sendStringLine("Элемент с указанным id не найден");
     } catch (NumberFormatException e) {
       manager.getOutputChannel().sendStringLine("id должен быть числом");

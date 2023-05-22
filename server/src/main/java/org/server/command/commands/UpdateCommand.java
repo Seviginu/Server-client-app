@@ -3,6 +3,7 @@ package org.server.command.commands;
 import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
+import org.server.command.exceptions.CommandNotFoundException;
 import org.server.command.exceptions.WrongArgumentException;
 
 public class UpdateCommand extends ElementCommand {
@@ -25,6 +26,10 @@ public class UpdateCommand extends ElementCommand {
     if (collection.updateElement(id, element)) {
       manager.getOutputChannel().sendStringLine("Элемент успешно добавлен");
     } else manager.getOutputChannel().sendStringLine("Элемент с указанным id не существует");
+    try{
+      manager.executeCommand("save");
+    }
+    catch (CommandNotFoundException ignore){}
   }
 
   @Override

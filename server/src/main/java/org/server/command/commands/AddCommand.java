@@ -6,6 +6,7 @@ import java.util.List;
 
 import collection.MusicBandCollection;
 import org.server.command.CommandManager;
+import org.server.command.exceptions.CommandNotFoundException;
 
 public class AddCommand extends ElementCommand {
   public AddCommand(MusicBandCollection collection, CommandManager manager) {
@@ -17,6 +18,10 @@ public class AddCommand extends ElementCommand {
     element.setId(MusicBandCollection.generateId());
     element.setCreationDate(LocalDateTime.now());
     collection.add(element);
+    try{
+      manager.executeCommand("save");
+    }
+    catch (CommandNotFoundException ignore){ ignore.printStackTrace();}
     manager.getOutputChannel().sendStringLine("Элемент добавлен");
   }
 

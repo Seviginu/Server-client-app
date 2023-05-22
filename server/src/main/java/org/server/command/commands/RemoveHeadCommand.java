@@ -3,6 +3,7 @@ package org.server.command.commands;
 import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
+import org.server.command.exceptions.CommandNotFoundException;
 
 public class RemoveHeadCommand extends CollectionCommand {
   public RemoveHeadCommand(MusicBandCollection collection, CommandManager manager) {
@@ -17,6 +18,10 @@ public class RemoveHeadCommand extends CollectionCommand {
       manager
           .getOutputChannel()
           .sendStringLine("Удален элемент с id = " + collection.removeByIndex(0).getId());
+    try{
+      manager.executeCommand("save");
+    }
+    catch (CommandNotFoundException ignore){}
   }
 
   @Override
