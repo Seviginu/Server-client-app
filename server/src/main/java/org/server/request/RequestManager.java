@@ -1,14 +1,12 @@
 package org.server.request;
 
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import request.CommandPackage;
 import request.Request;
-
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 
 public class RequestManager {
   private final ServerSocket channel;
@@ -23,7 +21,9 @@ public class RequestManager {
         InputStream inputStream = socket.getInputStream();
         ObjectInputStream objectStream = new ObjectInputStream(inputStream)) {
       logger.debug("request received");
-      return (CommandPackage) objectStream.readObject();
+      CommandPackage result = (CommandPackage) objectStream.readObject();
+      logger.trace(result);
+      return result;
     } catch (Exception ignored) {
       logger.debug("fail during receive request");
       return null;

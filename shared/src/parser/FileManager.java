@@ -1,10 +1,8 @@
 package parser;
 
+import collection.MusicBandCollection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import collection.MusicBandCollection;
-
-
 import java.io.*;
 import java.time.LocalDateTime;
 
@@ -37,7 +35,6 @@ public class FileManager {
     return file.canWrite();
   }
 
-
   /**
    * Load collection from json file
    *
@@ -47,8 +44,9 @@ public class FileManager {
   public MusicBandCollection jsonToObj() throws IOException {
     try (FileInputStream inputStream = new FileInputStream(file);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
-
-      return gson.fromJson(inputStreamReader, MusicBandCollection.class);
+      MusicBandCollection result = gson.fromJson(inputStreamReader, MusicBandCollection.class);
+      if (result == null) return new MusicBandCollection();
+      return result;
     }
   }
 

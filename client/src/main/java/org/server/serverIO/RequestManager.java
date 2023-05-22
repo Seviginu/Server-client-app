@@ -14,6 +14,7 @@ public class RequestManager {
 
   public RequestManager(String hostname, int port) {
     this.address = new InetSocketAddress(hostname, port);
+
   }
 
   public void sendRequest(CommandPackage request) throws IOException {

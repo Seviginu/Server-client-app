@@ -1,13 +1,13 @@
 package collection;
 
-import collection.element.MusicBand;
 import collection.builder.Validators;
-
+import collection.element.MusicBand;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
 /** Class to contain and modify {@link List} of {@link MusicBand} objects */
-public class MusicBandCollection {
+public class MusicBandCollection implements Serializable {
   private LocalDateTime creationTime;
   private LocalDateTime updateTime;
   private final List<MusicBand> listOfElements;
@@ -37,22 +37,23 @@ public class MusicBandCollection {
 
   /**
    * removes all items with invalid values or objects with same id
+   *
    * @return count of removed items
    */
-  public int removeInvalidElements(){
+  public int removeInvalidElements() {
     HashSet<Long> idSet = new HashSet<>();
     int deleteItemsCount = 0;
     ArrayList<Integer> itemsToRemove = new ArrayList<>();
-    for (int i = 0; i < listOfElements.size(); ++i){
-      if(idSet.contains(listOfElements.get(i).getId()) ||
-              !Validators.getMusicBandValidator().validate(listOfElements.get(i))) {
+    for (int i = 0; i < listOfElements.size(); ++i) {
+      if (idSet.contains(listOfElements.get(i).getId())
+          || !Validators.getMusicBandValidator().validate(listOfElements.get(i))) {
         itemsToRemove.add(i);
         deleteItemsCount++;
       }
       idSet.add(listOfElements.get(i).getId());
     }
     int offset = 0;
-    for(int itemId : itemsToRemove){
+    for (int itemId : itemsToRemove) {
       listOfElements.remove(itemId - offset++);
     }
     return deleteItemsCount;

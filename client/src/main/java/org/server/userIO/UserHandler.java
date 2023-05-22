@@ -37,6 +37,7 @@ public class UserHandler {
         manager.executeCommand(name, message);
       } catch (Exception e) {
         channel.sendStringLine(e.getMessage());
+        e.printStackTrace();
       }
     }
   }

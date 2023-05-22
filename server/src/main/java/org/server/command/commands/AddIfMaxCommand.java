@@ -2,9 +2,8 @@ package org.server.command.commands;
 
 import collection.MusicBandCollection;
 import collection.element.MusicBand;
-import org.server.command.CommandManager;
-
 import java.util.List;
+import org.server.command.CommandManager;
 
 public class AddIfMaxCommand extends ElementCommand {
 

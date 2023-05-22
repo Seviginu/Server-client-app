@@ -1,6 +1,8 @@
 package collection.element;
 
-public enum Country {
+import java.io.Serializable;
+
+public enum Country implements Serializable {
   RUSSIA("Россия"),
   USA("США"),
   ITALY("Италия"),

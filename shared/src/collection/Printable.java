@@ -1,5 +1,6 @@
 package collection;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 /**
@@ -8,7 +9,7 @@ import java.lang.reflect.Field;
  * Printable} highlight field_name with green color and makes indent before every field of this
  * object. (indent = "--")
  */
-public abstract class Printable {
+public abstract class Printable implements Serializable {
   private static final String ANSI_GREEN = "\u001B[32m";
   private static final String ANSI_RESET = "\u001B[0m";
 

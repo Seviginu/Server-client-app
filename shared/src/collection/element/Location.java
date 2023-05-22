@@ -1,7 +1,6 @@
 package collection.element;
 
 import collection.Printable;
-
 import java.util.Objects;
 
 public class Location extends Printable {

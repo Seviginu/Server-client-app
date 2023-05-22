@@ -1,7 +1,6 @@
 package collection.element;
 
 import collection.Printable;
-
 import java.util.Objects;
 
 public class Coordinates extends Printable {
@@ -11,6 +10,7 @@ public class Coordinates extends Printable {
   public void setX(Double x) {
     this.x = x;
   }
+
   public double getX() {
     return x;
   }

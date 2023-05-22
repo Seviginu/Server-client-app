@@ -1,6 +1,8 @@
 package collection.element;
 
-public enum MusicGenre {
+import java.io.Serializable;
+
+public enum MusicGenre implements Serializable {
   ROCK("Рок"),
   RAP("Рэп"),
   PSYCHEDELIC_CLOUD_RAP("Психоделический клауд рэп"),

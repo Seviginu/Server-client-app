@@ -1,6 +1,8 @@
 package collection.element;
 
-public enum Color {
+import java.io.Serializable;
+
+public enum Color implements Serializable {
   RED("Красный"),
   BLACK("Черный"),
   YELLOW("Желтый");

@@ -1,5 +1,8 @@
 package request;
 
 public enum RequestType {
-    ERROR, OK, COMMAND, ELEMENT
+  ERROR,
+  OK,
+  COMMAND,
+  ELEMENT
 }

@@ -1,8 +1,7 @@
 package org.server.command.commands;
 
-import java.util.List;
-
 import collection.MusicBandCollection;
+import java.util.List;
 import org.server.command.CommandManager;
 
 public class RemoveHeadCommand extends CollectionCommand {

@@ -1,4 +1,5 @@
 package request;
 
-public record CommandPackage(String commandName, Object[] args) {
-}
+import java.io.Serializable;
+
+public record CommandPackage(String commandName, Object[] args) implements Serializable {}

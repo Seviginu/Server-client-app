@@ -1,20 +1,18 @@
 package org.server.command.commands;
 
-
 import collection.MusicBandCollection;
 import collection.element.MusicBand;
 import org.server.command.CommandManager;
 
-abstract public class ElementCommand extends CollectionCommand{
+public abstract class ElementCommand extends CollectionCommand {
 
-    protected MusicBand element;
+  protected MusicBand element;
 
-    public ElementCommand(MusicBandCollection collection, CommandManager manager) {
-        super(collection, manager);
-    }
+  public ElementCommand(MusicBandCollection collection, CommandManager manager) {
+    super(collection, manager);
+  }
 
-    public void setElement(MusicBand element){
-        this.element = element;
-    }
-
+  public void setElement(MusicBand element) {
+    this.element = element;
+  }
 }

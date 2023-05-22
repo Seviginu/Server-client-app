@@ -1,8 +1,7 @@
 package org.server.command.commands;
 
-import java.util.List;
-
 import collection.MusicBandCollection;
+import java.util.List;
 import org.server.command.CommandManager;
 
 public class AddCommand extends ElementCommand {
@@ -13,6 +12,7 @@ public class AddCommand extends ElementCommand {
   @Override
   public void execute(List<String> args) {
     collection.add(element);
+    manager.getOutputChannel().sendStringLine("Элемент добавлен");
   }
 
   @Override

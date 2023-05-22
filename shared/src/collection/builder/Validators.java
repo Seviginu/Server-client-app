@@ -1,12 +1,11 @@
 package collection.builder;
 
 import collection.element.*;
-import parser.FileManager;
-
 import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import parser.FileManager;
 
 /** Class that generate validators for different types */
 public class Validators {
@@ -93,7 +92,7 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + (MusicGenre.values().length-1));
+            "Значение должно быть в диапазоне 0-" + (MusicGenre.values().length - 1));
   }
 
   public static StringValidator<Double> getCoordinatesXValidator() {
@@ -163,7 +162,7 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + (Color.values().length-1));
+            "Значение должно быть в диапазоне 0-" + (Color.values().length - 1));
   }
 
   public static StringValidator<Country> getPersonNationalityValidator() {
@@ -179,7 +178,7 @@ public class Validators {
                 return null;
               }
             },
-            "Значение должно быть в диапазоне 0-" + (Country.values().length-1));
+            "Значение должно быть в диапазоне 0-" + (Country.values().length - 1));
   }
 
   public static StringValidator<Long> getLocationXValidator() {
@@ -245,77 +244,77 @@ public class Validators {
             "Файл не существует или закрыт для записи");
   }
 
-  public static Validator<Location> getLocationValidator(){
-      return new Validator<Location>() {
-          @Override
-          public boolean validate(Location value) {
-              return value != null &&
-                      getLocationXValidator().validate(value.getX()) &&
-                      getLocationYValidator().validate(value.getY()) &&
-                      getLocationZValidator().validate(value.getZ()) &&
-                      getLocationNameValidator().validate(value.getName());
-          }
+  public static Validator<Location> getLocationValidator() {
+    return new Validator<Location>() {
+      @Override
+      public boolean validate(Location value) {
+        return value != null
+            && getLocationXValidator().validate(value.getX())
+            && getLocationYValidator().validate(value.getY())
+            && getLocationZValidator().validate(value.getZ())
+            && getLocationNameValidator().validate(value.getName());
+      }
 
-          @Override
-          public String getRequirements() {
-              return null;
-          }
-      };
+      @Override
+      public String getRequirements() {
+        return null;
+      }
+    };
   }
 
-  public static Validator<Person> getPersonValidator(){
-      return new Validator<>() {
-          @Override
-          public boolean validate(Person value) {
-              return value != null &&
-                      getPersonNameValidator().validate(value.getName()) &&
-                      getPersonHeightValidator().validate(value.getHeight()) &&
-                      getPersonHairColorValidator().validate(value.getHairColor()) &&
-                      getPersonNationalityValidator().validate(value.getNationality()) &&
-                      getLocationValidator().validate(value.getLocation());
-          }
+  public static Validator<Person> getPersonValidator() {
+    return new Validator<>() {
+      @Override
+      public boolean validate(Person value) {
+        return value != null
+            && getPersonNameValidator().validate(value.getName())
+            && getPersonHeightValidator().validate(value.getHeight())
+            && getPersonHairColorValidator().validate(value.getHairColor())
+            && getPersonNationalityValidator().validate(value.getNationality())
+            && getLocationValidator().validate(value.getLocation());
+      }
 
-          @Override
-          public String getRequirements() {
-              return null;
-          }
-      };
+      @Override
+      public String getRequirements() {
+        return null;
+      }
+    };
   }
 
-  public static Validator<Coordinates> getCoordinatesValidator(){
-      return new Validator<>() {
-          @Override
-          public boolean validate(Coordinates value) {
-              return value != null &&
-                      getCoordinatesXValidator().validate(value.getX()) &&
-                      getCoordinatesYValidator().validate(value.getY());
-          }
+  public static Validator<Coordinates> getCoordinatesValidator() {
+    return new Validator<>() {
+      @Override
+      public boolean validate(Coordinates value) {
+        return value != null
+            && getCoordinatesXValidator().validate(value.getX())
+            && getCoordinatesYValidator().validate(value.getY());
+      }
 
-          @Override
-          public String getRequirements() {
-              return null;
-          }
-      };
+      @Override
+      public String getRequirements() {
+        return null;
+      }
+    };
   }
 
-  public static Validator<MusicBand> getMusicBandValidator(){
-      return new Validator<>() {
-          @Override
-          public boolean validate(MusicBand value) {
-              return value != null &&
-                      getMusicBandNameValidator().validate(value.getName()) &&
-                      getMusicBandParticipantsValidator().validate(value.getNumberOfParticipants()) &&
-                      getMusicBandDescriptionValidator().validate(value.getDescription()) &&
-                      getMusicBandGenreValidator().validate(value.getGenre()) &&
-                      getMusicBandAlbumsCountValidator().validate(value.getAlbumsCount()) &&
-                      getCoordinatesValidator().validate(value.getCoordinates()) &&
-                      getPersonValidator().validate(value.getFrontMan());
-          }
+  public static Validator<MusicBand> getMusicBandValidator() {
+    return new Validator<>() {
+      @Override
+      public boolean validate(MusicBand value) {
+        return value != null
+            && getMusicBandNameValidator().validate(value.getName())
+            && getMusicBandParticipantsValidator().validate(value.getNumberOfParticipants())
+            && getMusicBandDescriptionValidator().validate(value.getDescription())
+            && getMusicBandGenreValidator().validate(value.getGenre())
+            && getMusicBandAlbumsCountValidator().validate(value.getAlbumsCount())
+            && getCoordinatesValidator().validate(value.getCoordinates())
+            && getPersonValidator().validate(value.getFrontMan());
+      }
 
-          @Override
-          public String getRequirements() {
-              return null;
-          }
-      };
+      @Override
+      public String getRequirements() {
+        return null;
+      }
+    };
   }
 }
