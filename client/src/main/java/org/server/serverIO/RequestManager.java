@@ -1,16 +1,18 @@
 package org.server.serverIO;
 
-import collection.MusicBandCollection;
+import org.server.collection.MusicBandCollection;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
-import request.*;
+
+import org.server.request.*;
 
 public class RequestManager {
   private final InetSocketAddress address;
   private MusicBandCollection cachedCollection;
+  private SocketChannel currentSocket;
 
   public RequestManager(String hostname, int port) {
     this.address = new InetSocketAddress(hostname, port);
@@ -18,7 +20,8 @@ public class RequestManager {
   }
 
   public void sendRequest(CommandPackage request) throws IOException {
-    try (SocketChannel socket = SocketChannel.open()) {
+    try {SocketChannel socket = SocketChannel.open();
+      this.currentSocket = socket;
       socket.connect(address);
       ObjectOutputStream output = new ObjectOutputStream(socket.socket().getOutputStream());
       output.writeObject(request);
@@ -29,9 +32,9 @@ public class RequestManager {
   }
 
   public MusicBandCollection receiveCollection() throws IOException {
-    try (SocketChannel socket = SocketChannel.open()) {
-      socket.connect(address);
-      ObjectInputStream input = new ObjectInputStream(socket.socket().getInputStream());
+    try  {
+
+      ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
       GetObjectRequest<MusicBandCollection> response =
           (GetObjectRequest<MusicBandCollection>) input.readObject();
       if (response.type() == RequestType.OK) return this.cachedCollection = response.content();
@@ -41,9 +44,8 @@ public class RequestManager {
   }
 
   public String receiveMessage() throws IOException {
-    try (SocketChannel socket = SocketChannel.open()) {
-      socket.connect(address);
-      ObjectInputStream input = new ObjectInputStream(socket.socket().getInputStream());
+    try {
+      ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
       TextRequest response = (TextRequest) input.readObject();
       if (response.type() == RequestType.OK) return response.content();
     } catch (ClassNotFoundException ignored) {
