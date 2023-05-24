@@ -19,10 +19,10 @@ public class RemoveHeadCommand extends CollectionCommand {
       manager
           .getOutputChannel()
           .sendStringLine("Удален элемент с id = " + collection.removeByIndex(0).getId());
-    try{
+    try {
       manager.executeCommand("save");
+    } catch (CommandNotFoundException ignore) {
     }
-    catch (CommandNotFoundException ignore){}
   }
 
   @Override

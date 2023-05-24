@@ -1,8 +1,7 @@
 package org.server.commands;
 
-import utils.CommandNames;
-
 import java.util.List;
+import utils.CommandNames;
 
 public class HistoryCommand extends UserCommand {
   public HistoryCommand(CommandManager manager) {

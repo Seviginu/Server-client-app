@@ -21,12 +21,11 @@ public class RemoveByIdCommand extends CollectionCommand {
     try {
       if (collection.remove(Long.parseLong(args.get(0)))) {
         manager.getOutputChannel().sendStringLine("Элемент успешно удален");
-        try{
+        try {
           manager.executeCommand("save");
+        } catch (CommandNotFoundException ignore) {
         }
-        catch (CommandNotFoundException ignore){}
-        }
-      else manager.getOutputChannel().sendStringLine("Элемент с указанным id не найден");
+      } else manager.getOutputChannel().sendStringLine("Элемент с указанным id не найден");
     } catch (NumberFormatException e) {
       manager.getOutputChannel().sendStringLine("id должен быть числом");
     }

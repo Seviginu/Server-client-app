@@ -7,7 +7,6 @@ import request.Request;
 import request.RequestType;
 import request.TextRequest;
 
-
 public class NetworkUserChannel implements UserOutputChannel {
   private final RequestManager manager;
   private GetObjectRequest<?> request;
@@ -34,9 +33,9 @@ public class NetworkUserChannel implements UserOutputChannel {
     }
   }
 
-//  public byte[] get(){
-//    return byteArray;
-//  }
+  //  public byte[] get(){
+  //    return byteArray;
+  //  }
 
   public void sendResponse(Request<?> response) {
     try {

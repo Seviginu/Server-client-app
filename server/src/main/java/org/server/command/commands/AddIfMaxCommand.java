@@ -2,7 +2,6 @@ package org.server.command.commands;
 
 import collection.MusicBandCollection;
 import collection.element.MusicBand;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import org.server.command.CommandManager;
@@ -33,10 +32,10 @@ public class AddIfMaxCommand extends ElementCommand {
       element.setCreationDate(LocalDateTime.now());
       collection.add(element);
       manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
-      try{
+      try {
         manager.executeCommand("save");
+      } catch (CommandNotFoundException ignore) {
       }
-      catch (CommandNotFoundException ignore){}
     } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");
   }
 

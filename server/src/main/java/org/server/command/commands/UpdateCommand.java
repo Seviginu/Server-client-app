@@ -1,7 +1,6 @@
 package org.server.command.commands;
 
 import collection.MusicBandCollection;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import org.server.command.CommandManager;
@@ -31,10 +30,10 @@ public class UpdateCommand extends ElementCommand {
     if (collection.updateElement(id, element)) {
       manager.getOutputChannel().sendStringLine("Элемент успешно обновлен");
     } else manager.getOutputChannel().sendStringLine("Элемент с указанным id не существует");
-    try{
+    try {
       manager.executeCommand("save");
+    } catch (CommandNotFoundException ignore) {
     }
-    catch (CommandNotFoundException ignore){}
   }
 
   @Override

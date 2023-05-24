@@ -1,10 +1,8 @@
 package org.server.command.commands;
 
-
+import collection.MusicBandCollection;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import collection.MusicBandCollection;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
 import utils.CommandNames;
@@ -19,10 +17,11 @@ public class AddCommand extends ElementCommand {
     element.setId(MusicBandCollection.generateId());
     element.setCreationDate(LocalDateTime.now());
     collection.add(element);
-    try{
+    try {
       manager.executeCommand("save");
+    } catch (CommandNotFoundException ignore) {
+      ignore.printStackTrace();
     }
-    catch (CommandNotFoundException ignore){ ignore.printStackTrace();}
     manager.getOutputChannel().sendStringLine("Элемент добавлен");
   }
 

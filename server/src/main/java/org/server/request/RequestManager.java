@@ -3,13 +3,10 @@ package org.server.request;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.server.command.CommandManager;
 import request.CommandPackage;
 import request.Request;
-
 
 public class RequestManager {
 
@@ -22,10 +19,11 @@ public class RequestManager {
   }
 
   public CommandPackage getRequest() {
-    try {Socket socket = channel.accept();
+    try {
+      Socket socket = channel.accept();
       this.currentSocket = socket;
-        InputStream inputStream = socket.getInputStream();
-        ObjectInputStream objectStream = new ObjectInputStream(inputStream);
+      InputStream inputStream = socket.getInputStream();
+      ObjectInputStream objectStream = new ObjectInputStream(inputStream);
       logger.debug("request received");
       CommandPackage result = (CommandPackage) objectStream.readObject();
       logger.trace(result);
@@ -37,8 +35,7 @@ public class RequestManager {
   }
 
   public void sendResponse(Request<?> request) throws IOException {
-    try (
-        OutputStream outputStream = this.currentSocket.getOutputStream();
+    try (OutputStream outputStream = this.currentSocket.getOutputStream();
         ObjectOutputStream objectStream = new ObjectOutputStream(outputStream)) {
       objectStream.writeObject(request);
       logger.debug("send response");

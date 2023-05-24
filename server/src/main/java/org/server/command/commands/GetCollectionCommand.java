@@ -1,9 +1,7 @@
 package org.server.command.commands;
 
 import collection.MusicBandCollection;
-import java.io.IOException;
 import java.util.List;
-
 import org.server.cli.NetworkUserChannel;
 import org.server.command.CommandManager;
 import request.GetObjectRequest;

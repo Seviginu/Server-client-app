@@ -36,7 +36,8 @@ public class CommandManager {
     commandManager.registerCommand(new AddIfMaxCommand(collectionManager, commandManager));
     commandManager.registerCommand(new GetCollectionCommand(collectionManager, commandManager));
     commandManager.registerCommand(new SaveCommand(collectionManager, fileManager, commandManager));
-    commandManager.registerCommand(new GetCollectionUpdateTimeCommand(collectionManager, commandManager));
+    commandManager.registerCommand(
+        new GetCollectionUpdateTimeCommand(collectionManager, commandManager));
   }
 
   public CommandManager(RequestManager channel) {

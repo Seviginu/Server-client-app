@@ -1,20 +1,17 @@
 package org.server;
 
+import collection.MusicBandCollection;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.time.LocalDateTime;
-
-import collection.MusicBandCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.server.command.CommandManager;
-
 import org.server.request.RequestManager;
 import parser.FileManager;
 import request.CommandPackage;
-
 
 public class ServerManager {
   private static final Logger logger = LogManager.getLogger("org.server.ServerManager");
@@ -24,9 +21,7 @@ public class ServerManager {
       server.bind(new InetSocketAddress(7566));
       RequestManager manager = new RequestManager(server);
       CommandManager commandManager = new CommandManager(manager);
-      FileManager fileManager =
-          new FileManager(
-              new File("collection.json"));
+      FileManager fileManager = new FileManager(new File("collection.json"));
       MusicBandCollection collection = fileManager.jsonToObj();
       if (collection.getCreationTime() == null) {
         collection.setCreationTime(LocalDateTime.now());
@@ -37,11 +32,10 @@ public class ServerManager {
       logger.info("Server ready");
 
       while (!server.isClosed()) {
-        try{
+        try {
           CommandPackage commandPackage = manager.getRequest();
           commandManager.executeCommand(commandPackage);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
           logger.error(e);
           e.printStackTrace();
           commandManager.getOutputChannel().sendStringLine(e.getMessage());
