@@ -7,6 +7,7 @@ import java.util.List;
 import org.server.builder.MusicBandBuilder;
 import org.server.serverIO.RequestManager;
 import request.CommandPackage;
+import utils.CommandNames;
 
 public class AddCommand extends CollectionCommand {
   public AddCommand(RequestManager requestManager, CommandManager manager) {
@@ -35,6 +36,6 @@ public class AddCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "add";
+    return CommandNames.ADD;
   }
 }

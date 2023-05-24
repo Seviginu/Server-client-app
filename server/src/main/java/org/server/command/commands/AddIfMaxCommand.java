@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
+import utils.CommandNames;
 
 public class AddIfMaxCommand extends ElementCommand {
 
@@ -46,6 +47,6 @@ public class AddIfMaxCommand extends ElementCommand {
 
   @Override
   public String getName() {
-    return "add_if_max";
+    return CommandNames.ADD_IF_MAX;
   }
 }

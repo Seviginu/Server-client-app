@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class ShowCommand extends CollectionCommand {
   public ShowCommand(RequestManager requestManager, CommandManager manager) {
@@ -31,6 +32,6 @@ public class ShowCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "show";
+    return CommandNames.SHOW;
   }
 }

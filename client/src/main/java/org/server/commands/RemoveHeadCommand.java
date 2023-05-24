@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class RemoveHeadCommand extends CollectionCommand {
   public RemoveHeadCommand(RequestManager requestManager, CommandManager manager) {
@@ -26,6 +27,6 @@ public class RemoveHeadCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "remove_head";
+    return CommandNames.REMOVE_HEAD;
   }
 }

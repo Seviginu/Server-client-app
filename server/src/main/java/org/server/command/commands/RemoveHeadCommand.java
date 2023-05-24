@@ -4,6 +4,7 @@ import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
+import utils.CommandNames;
 
 public class RemoveHeadCommand extends CollectionCommand {
   public RemoveHeadCommand(MusicBandCollection collection, CommandManager manager) {
@@ -31,6 +32,6 @@ public class RemoveHeadCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "remove_head";
+    return CommandNames.REMOVE_HEAD;
   }
 }

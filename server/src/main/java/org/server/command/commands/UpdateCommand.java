@@ -7,6 +7,7 @@ import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
 import org.server.command.exceptions.WrongArgumentException;
+import utils.CommandNames;
 
 public class UpdateCommand extends ElementCommand {
 
@@ -43,6 +44,6 @@ public class UpdateCommand extends ElementCommand {
 
   @Override
   public String getName() {
-    return "update";
+    return CommandNames.UPDATE;
   }
 }

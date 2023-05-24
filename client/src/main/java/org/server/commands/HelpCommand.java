@@ -1,5 +1,7 @@
 package org.server.commands;
 
+import utils.CommandNames;
+
 import java.util.List;
 
 public class HelpCommand extends UserCommand {
@@ -24,6 +26,6 @@ public class HelpCommand extends UserCommand {
 
   @Override
   public String getName() {
-    return "help";
+    return CommandNames.HELP;
   }
 }

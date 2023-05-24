@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class GroupFrontManCommand extends CollectionCommand {
   public GroupFrontManCommand(RequestManager requestManager, CommandManager manager) {
@@ -45,6 +46,6 @@ public class GroupFrontManCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "group_counting_by_front_man";
+    return CommandNames.GROUP_FRONT_MAN;
   }
 }

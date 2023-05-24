@@ -8,6 +8,7 @@ import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.SaveException;
 import parser.FileManager;
+import utils.CommandNames;
 
 public class SaveCommand extends FileCommand {
 
@@ -36,6 +37,6 @@ public class SaveCommand extends FileCommand {
 
   @Override
   public String getName() {
-    return "save";
+    return CommandNames.SAVE;
   }
 }

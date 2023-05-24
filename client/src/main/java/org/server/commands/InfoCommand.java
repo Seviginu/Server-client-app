@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class InfoCommand extends CollectionCommand {
   public InfoCommand(RequestManager requestManager, CommandManager manager) {
@@ -36,6 +37,6 @@ public class InfoCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "info";
+    return CommandNames.INFO;
   }
 }

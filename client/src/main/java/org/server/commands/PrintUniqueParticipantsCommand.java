@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class PrintUniqueParticipantsCommand extends CollectionCommand {
 
@@ -35,6 +36,6 @@ public class PrintUniqueParticipantsCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "print_unique_number_of_participants";
+    return CommandNames.PRINT_UNIQUE_PARTICIPANTS;
   }
 }

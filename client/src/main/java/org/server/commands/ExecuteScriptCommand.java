@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import org.server.commands.exceptions.WrongArgumentException;
+import utils.CommandNames;
 
 public class ExecuteScriptCommand extends UserCommand {
 
@@ -102,6 +103,6 @@ public class ExecuteScriptCommand extends UserCommand {
 
   @Override
   public String getName() {
-    return "execute_script";
+    return CommandNames.EXECUTE_SCRIPT;
   }
 }

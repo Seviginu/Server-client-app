@@ -7,6 +7,7 @@ import java.util.List;
 import org.server.builder.MusicBandBuilder;
 import org.server.serverIO.RequestManager;
 import request.CommandPackage;
+import utils.CommandNames;
 
 public class AddIfMaxCommand extends CollectionCommand {
 
@@ -36,6 +37,6 @@ public class AddIfMaxCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "add_if_max";
+    return CommandNames.ADD_IF_MAX;
   }
 }

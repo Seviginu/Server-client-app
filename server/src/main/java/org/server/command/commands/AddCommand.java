@@ -7,6 +7,7 @@ import java.util.List;
 import collection.MusicBandCollection;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
+import utils.CommandNames;
 
 public class AddCommand extends ElementCommand {
   public AddCommand(MusicBandCollection collection, CommandManager manager) {
@@ -32,6 +33,6 @@ public class AddCommand extends ElementCommand {
 
   @Override
   public String getName() {
-    return "add";
+    return CommandNames.ADD;
   }
 }

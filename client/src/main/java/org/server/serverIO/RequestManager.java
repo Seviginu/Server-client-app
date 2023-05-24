@@ -3,13 +3,14 @@ package org.server.serverIO;
 
 import collection.MusicBandCollection;
 import request.*;
+import utils.CommandNames;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
-
+import java.time.LocalDateTime;
 
 
 public class RequestManager {
@@ -34,9 +35,19 @@ public class RequestManager {
     }
   }
 
-  public MusicBandCollection receiveCollection() throws IOException {
+  private LocalDateTime receiveUpdateTime() throws IOException{
     try  {
+      ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
+      GetObjectRequest<LocalDateTime> response =
+              (GetObjectRequest<LocalDateTime>) input.readObject();
+      if (response.type() == RequestType.OK) return response.content();
+    } catch (ClassNotFoundException ignored) {
+    }
+    throw new IOException("Can't receive response");
+  }
 
+  private MusicBandCollection receiveCollection() throws IOException {
+    try  {
       ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
       GetObjectRequest<MusicBandCollection> response =
           (GetObjectRequest<MusicBandCollection>) input.readObject();
@@ -67,6 +78,8 @@ public class RequestManager {
   }
 
   public MusicBandCollection getCollection() throws IOException {
+    sendRequest(new CommandPackage(CommandNames.GET_COLLECTION_UPDATE_TIME, null));
+    if(cachedCollection != null && cachedCollection.getUpdateTime().equals(receiveUpdateTime())) return cachedCollection;
     sendRequest(new CommandPackage(Requests.GET_COLLECTION_REQUEST, null));
     return receiveCollection();
   }

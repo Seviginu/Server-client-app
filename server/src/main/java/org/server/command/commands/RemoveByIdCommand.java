@@ -4,6 +4,7 @@ import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
+import utils.CommandNames;
 
 public class RemoveByIdCommand extends CollectionCommand {
 
@@ -38,6 +39,6 @@ public class RemoveByIdCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "remove_by_id";
+    return CommandNames.REMOVE_BY_ID;
   }
 }

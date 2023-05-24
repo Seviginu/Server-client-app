@@ -8,6 +8,7 @@ import org.server.cli.NetworkUserChannel;
 import org.server.command.CommandManager;
 import request.GetObjectRequest;
 import request.RequestType;
+import utils.CommandNames;
 
 public class GetCollectionCommand extends CollectionCommand {
   public GetCollectionCommand(MusicBandCollection collection, CommandManager manager) {
@@ -27,6 +28,6 @@ public class GetCollectionCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "get_collection";
+    return CommandNames.GET_COLLECTION;
   }
 }

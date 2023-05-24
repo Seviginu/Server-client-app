@@ -1,5 +1,7 @@
 package org.server.commands;
 
+import utils.CommandNames;
+
 import java.util.List;
 
 public class HistoryCommand extends UserCommand {
@@ -23,6 +25,6 @@ public class HistoryCommand extends UserCommand {
 
   @Override
   public String getName() {
-    return "history";
+    return CommandNames.HISTORY;
   }
 }

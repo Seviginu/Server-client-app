@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import org.server.serverIO.RequestManager;
+import utils.CommandNames;
 
 public class PrintDescendingCommand extends CollectionCommand {
   public PrintDescendingCommand(RequestManager requestManager, CommandManager manager) {
@@ -37,6 +38,6 @@ public class PrintDescendingCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "print_descending";
+    return CommandNames.PRINT_DESCENDING;
   }
 }

@@ -4,6 +4,7 @@ import collection.MusicBandCollection;
 import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
+import utils.CommandNames;
 
 public class ClearCommand extends CollectionCommand {
   public ClearCommand(MusicBandCollection collection, CommandManager manager) {
@@ -27,6 +28,6 @@ public class ClearCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "clear";
+    return CommandNames.CLEAR;
   }
 }

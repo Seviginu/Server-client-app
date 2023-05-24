@@ -7,6 +7,7 @@ import org.server.builder.MusicBandBuilder;
 import org.server.commands.exceptions.WrongArgumentException;
 import org.server.serverIO.RequestManager;
 import request.CommandPackage;
+import utils.CommandNames;
 
 public class UpdateCommand extends CollectionCommand {
 
@@ -44,6 +45,6 @@ public class UpdateCommand extends CollectionCommand {
 
   @Override
   public String getName() {
-    return "update";
+    return CommandNames.UPDATE;
   }
 }
