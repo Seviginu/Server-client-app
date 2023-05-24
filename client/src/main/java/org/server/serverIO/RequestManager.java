@@ -1,13 +1,16 @@
 package org.server.serverIO;
 
-import org.server.collection.MusicBandCollection;
+
+import collection.MusicBandCollection;
+import request.*;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
-import org.server.request.*;
+
 
 public class RequestManager {
   private final InetSocketAddress address;

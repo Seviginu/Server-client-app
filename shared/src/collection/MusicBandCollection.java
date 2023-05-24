@@ -115,8 +115,10 @@ public class MusicBandCollection implements Serializable {
   }
 
   public boolean updateElement(Long id, MusicBand element) {
+    element.setId(id);
     for (MusicBand band : listOfElements) {
       if (Objects.equals(band.getId(), id)) {
+        element.setCreationDate(band.getCreationDate());
         listOfElements.replaceAll(o -> o.getId().equals(id) ? element : o);
         updateTime = LocalDateTime.now();
         return true;

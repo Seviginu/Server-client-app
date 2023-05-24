@@ -1,6 +1,8 @@
 package org.server.command.commands;
 
 import collection.MusicBandCollection;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.server.command.CommandManager;
 import org.server.command.exceptions.CommandNotFoundException;
@@ -23,8 +25,10 @@ public class UpdateCommand extends ElementCommand {
     } catch (NumberFormatException e) {
       throw new WrongArgumentException("Аргумент id должен быть числом");
     }
+    element.setId(id);
+    element.setCreationDate(LocalDateTime.now());
     if (collection.updateElement(id, element)) {
-      manager.getOutputChannel().sendStringLine("Элемент успешно добавлен");
+      manager.getOutputChannel().sendStringLine("Элемент успешно обновлен");
     } else manager.getOutputChannel().sendStringLine("Элемент с указанным id не существует");
     try{
       manager.executeCommand("save");

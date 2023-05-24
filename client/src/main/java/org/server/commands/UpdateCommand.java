@@ -30,7 +30,7 @@ public class UpdateCommand extends CollectionCommand {
             manager.getInputChannel(), manager.getOutputChannel(), !args.contains("-nousermode"));
     try {
       requestManager.sendRequest(
-          new CommandPackage(getName(), new Object[] {id, builder.getElement()}));
+          new CommandPackage(getName(), new Object[] {builder.getElement(), id}));
       manager.getOutputChannel().sendStringLine(requestManager.receiveMessage());
     } catch (IOException e) {
       throw new UncheckedIOException(e);

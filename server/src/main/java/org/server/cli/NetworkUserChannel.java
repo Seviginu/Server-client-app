@@ -1,14 +1,12 @@
 package org.server.cli;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 import org.server.request.RequestManager;
 import request.GetObjectRequest;
 import request.Request;
 import request.RequestType;
 import request.TextRequest;
+
 
 public class NetworkUserChannel implements UserOutputChannel {
   private final RequestManager manager;

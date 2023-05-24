@@ -83,13 +83,13 @@ public class CommandManager {
     if (command instanceof ElementCommand) {
       ((ElementCommand) command).setElement((MusicBand) commandPackage.args()[0]);
       if (commandPackage.args().length >= 2)
-        command.execute(List.of((String[]) commandPackage.args()[1]));
+        command.execute(List.of(commandPackage.args()[1].toString()));
       else command.execute(new ArrayList<>());
       return;
     }
     if (commandPackage.args() == null || commandPackage.args().length == 0)
       command.execute(new ArrayList<>());
-    else command.execute(List.of((String[]) commandPackage.args()[0]));
+    else command.execute(List.of(commandPackage.args()[0].toString()));
   }
 
   public List<String> getCommandsHistory() {
