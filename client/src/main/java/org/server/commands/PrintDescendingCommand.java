@@ -14,20 +14,23 @@ public class PrintDescendingCommand extends CollectionCommand {
     super(requestManager, manager);
   }
 
+  private void print_element(MusicBand band){
+    manager
+            .getOutputChannel()
+            .sendStringLine(
+                    band.toString() + "\n---------------------------------------------------");
+  }
+
   @Override
   public void execute(List<String> args) {
-    ArrayList<MusicBand> bands;
     try {
-      bands = new ArrayList<>(requestManager.getCollection().getListOfElements());
+      requestManager.getCollection().
+              getListOfElements().
+              stream().
+              sorted(Comparator.comparing(MusicBand::getName).reversed()).
+              forEach(this::print_element);
     } catch (IOException e) {
       throw new UncheckedIOException(e);
-    }
-    bands.sort(Comparator.comparing(MusicBand::getName));
-    for (int i = bands.size() - 1; i >= 0; i--) {
-      manager
-          .getOutputChannel()
-          .sendStringLine(
-              bands.get(i).toString() + "\n---------------------------------------------------");
     }
   }
 

@@ -10,15 +10,28 @@ import java.time.LocalDateTime;
 import request.*;
 import utils.CommandNames;
 
+/**
+ * Class to send requests and receive response from server
+ */
 public class RequestManager {
   private final InetSocketAddress address;
   private MusicBandCollection cachedCollection;
   private SocketChannel currentSocket;
 
+  /**
+   * bind the RequestManager instance with hostname and port
+   * @param hostname ip address or hostname
+   * @param port server port
+   */
   public RequestManager(String hostname, int port) {
     this.address = new InetSocketAddress(hostname, port);
   }
 
+  /**
+   * Send command request to server. Does not receive response
+   * @param request command and arguments
+   * @throws IOException
+   */
   public void sendRequest(CommandPackage request) throws IOException {
     try {
       SocketChannel socket = SocketChannel.open();
@@ -31,6 +44,11 @@ public class RequestManager {
     }
   }
 
+  /**
+   * Receive update time. Does not send any requests to server
+   * @return last time, when collection was updated
+   * @throws IOException
+   */
   private LocalDateTime receiveUpdateTime() throws IOException {
     try {
       ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
@@ -42,6 +60,11 @@ public class RequestManager {
     throw new IOException("Can't receive response");
   }
 
+  /**
+   * Receive MusicBandCollection. Does not send any requests to server
+   * @return actual server collection
+   * @throws IOException
+   */
   private MusicBandCollection receiveCollection() throws IOException {
     try {
       ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
@@ -53,6 +76,11 @@ public class RequestManager {
     throw new IOException("Can't receive response");
   }
 
+  /**
+   * Receive text message from server. Does not send any requests to server
+   * @return server text response
+   * @throws IOException
+   */
   public String receiveMessage() throws IOException {
     try {
       ObjectInputStream input = new ObjectInputStream(this.currentSocket.socket().getInputStream());
@@ -63,16 +91,34 @@ public class RequestManager {
     throw new IOException("Can't receive response");
   }
 
+  /**
+   * Send request and instantly get text response from server
+   * @param command command to execute
+   * @return server response
+   * @throws IOException
+   */
   public String sendTextRequest(String command) throws IOException {
     sendRequest(new CommandPackage(command, null));
     return receiveMessage();
   }
 
+  /**
+   * Send request and instantly get text response from server
+   * @param commandPackage command to execute
+   * @return server response
+   * @throws IOException
+   */
   public String sendTextRequest(CommandPackage commandPackage) throws IOException {
     sendRequest(commandPackage);
     return receiveMessage();
   }
 
+  /**
+   * Firstly try to compare update times of local(cached) collection and server.
+   * If they equals return local collection, otherwise send get collection request and return actual collection.
+   * @return collection
+   * @throws IOException
+   */
   public MusicBandCollection getCollection() throws IOException {
     sendRequest(new CommandPackage(CommandNames.GET_COLLECTION_UPDATE_TIME, null));
     if (cachedCollection != null && cachedCollection.getUpdateTime().equals(receiveUpdateTime()))

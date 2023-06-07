@@ -16,12 +16,14 @@ import request.CommandPackage;
 public class ServerManager {
   private static final Logger logger = LogManager.getLogger("org.server.ServerManager");
 
-  public static void startServer() {
+  public static void startServer(String filename) {
     try (ServerSocket server = new ServerSocket()) {
       server.bind(new InetSocketAddress(7566));
       RequestManager manager = new RequestManager(server);
       CommandManager commandManager = new CommandManager(manager);
-      FileManager fileManager = new FileManager(new File("collection.json"));
+      File file = new File(filename);
+      if(!file.canRead() || !file.canWrite()) throw new IllegalArgumentException("Неверно указан путь до файла");
+      FileManager fileManager = new FileManager(file);
       MusicBandCollection collection = fileManager.jsonToObj();
       if (collection.getCreationTime() == null) {
         collection.setCreationTime(LocalDateTime.now());
@@ -43,7 +45,6 @@ public class ServerManager {
       }
     } catch (IOException e) {
       logger.fatal(e);
-      e.printStackTrace();
     }
   }
 }

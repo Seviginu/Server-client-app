@@ -5,6 +5,9 @@ import collection.element.MusicBand;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /** Class to contain and modify {@link List} of {@link MusicBand} objects */
 public class MusicBandCollection implements Serializable {
@@ -98,6 +101,7 @@ public class MusicBandCollection implements Serializable {
   }
 
   public MusicBand removeByIndex(int index) {
+    updateTime = LocalDateTime.now();
     return listOfElements.remove(index);
   }
 
@@ -106,12 +110,7 @@ public class MusicBandCollection implements Serializable {
   }
 
   public MusicBand getElement(Long id) {
-    for (MusicBand band : listOfElements) {
-      if (Objects.equals(band.getId(), id)) {
-        return band;
-      }
-    }
-    return null;
+    return listOfElements.stream().filter(o -> id.equals(o.getId())).findFirst().orElse(null);
   }
 
   public boolean updateElement(Long id, MusicBand element) {
