@@ -27,17 +27,19 @@ public class RequestManager {
     this.address = new InetSocketAddress(hostname, port);
   }
 
+  public void connect() throws IOException {
+    this.currentSocket = SocketChannel.open();
+    this.currentSocket.connect(address);
+  }
+
   /**
    * Send command request to server. Does not receive response
    * @param request command and arguments
    * @throws IOException
    */
-  public void sendRequest(CommandPackage request) throws IOException {
+  public void sendRequest(UserRequest request) throws IOException {
     try {
-      SocketChannel socket = SocketChannel.open();
-      this.currentSocket = socket;
-      socket.connect(address);
-      ObjectOutputStream output = new ObjectOutputStream(socket.socket().getOutputStream());
+      ObjectOutputStream output = new ObjectOutputStream(currentSocket.socket().getOutputStream());
       output.writeObject(request);
     } catch (IOException e) {
       throw new IOException("Server not available");
@@ -91,6 +93,15 @@ public class RequestManager {
     throw new IOException("Can't receive response");
   }
 
+  public Request<?> receiveResponse() throws IOException{
+    try{
+      ObjectInputStream inputStream = new ObjectInputStream(this.currentSocket.socket().getInputStream());
+      return (Request<?>) inputStream.readObject();
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   /**
    * Send request and instantly get text response from server
    * @param command command to execute
@@ -121,7 +132,8 @@ public class RequestManager {
    */
   public MusicBandCollection getCollection() throws IOException {
     sendRequest(new CommandPackage(CommandNames.GET_COLLECTION_UPDATE_TIME, null));
-    if (cachedCollection != null && cachedCollection.getUpdateTime().equals(receiveUpdateTime()))
+    LocalDateTime updateTime = receiveUpdateTime();
+    if (cachedCollection != null && cachedCollection.getUpdateTime().equals(updateTime))
       return cachedCollection;
     sendRequest(new CommandPackage(Requests.GET_COLLECTION_REQUEST, null));
     return receiveCollection();

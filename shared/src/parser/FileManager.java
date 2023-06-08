@@ -16,6 +16,7 @@ public class FileManager {
    *
    * @param file json file with collection
    */
+
   public FileManager(File file) {
     this.file = file;
     GsonBuilder builder = new GsonBuilder();

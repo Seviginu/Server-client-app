@@ -2,14 +2,15 @@ package org.server.command.commands;
 
 import collection.MusicBandCollection;
 import org.server.command.CommandManager;
+import org.server.database.CollectionData;
 import parser.FileManager;
 
 public abstract class FileCommand extends CollectionCommand {
 
-  protected FileManager file;
+  protected CollectionData collectionData;
 
-  public FileCommand(MusicBandCollection collection, FileManager file, CommandManager manager) {
+  public FileCommand(MusicBandCollection collection, CollectionData file, CommandManager manager) {
     super(collection, manager);
-    this.file = file;
+    this.collectionData = file;
   }
 }
