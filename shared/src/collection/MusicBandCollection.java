@@ -24,7 +24,12 @@ public class MusicBandCollection implements Serializable {
     this.listOfElements = listOfElements;
   }
 
-  /**
+    public MusicBandCollection(Object[] objects) {
+      ArrayList<?> arrayList = new ArrayList<>(Arrays.stream(objects).toList());
+      this.listOfElements = (List<MusicBand>) arrayList;
+    }
+
+    /**
    * Generates a unique id
    *
    * @return id

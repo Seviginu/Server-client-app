@@ -1,36 +1,31 @@
 package org.server.cli;
 
 import java.io.IOException;
+import java.net.Socket;
+
 import org.server.request.RequestManager;
+import org.server.server.Utils;
 import request.GetObjectRequest;
 import request.Request;
 import request.RequestType;
 import request.TextRequest;
 
 public class NetworkUserChannel implements UserOutputChannel {
-  private final RequestManager manager;
+  private final Socket socket;
   private GetObjectRequest<?> request;
 
-  public NetworkUserChannel(RequestManager manager) {
-    this.manager = manager;
+  public NetworkUserChannel(Socket socket) {
+    this.socket = socket;
   }
 
   @Override
   public void sendStringLine(String string) {
-    try {
-      manager.sendResponse(new TextRequest(string + "\n", RequestType.OK));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    Utils.sendMessage(socket, string+"\n", RequestType.OK);
   }
 
   @Override
   public void sendString(String string) {
-    try {
-      manager.sendResponse(new TextRequest(string, RequestType.OK));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    Utils.sendMessage(socket, string, RequestType.OK);
   }
 
   //  public byte[] get(){
@@ -38,10 +33,6 @@ public class NetworkUserChannel implements UserOutputChannel {
   //  }
 
   public void sendResponse(Request<?> response) {
-    try {
-      manager.sendResponse(response);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    Utils.sendResponse(socket, response);
   }
 }

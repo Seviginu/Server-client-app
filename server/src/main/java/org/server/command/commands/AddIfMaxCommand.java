@@ -32,10 +32,9 @@ public class AddIfMaxCommand extends ElementCommand {
       element.setCreationDate(LocalDateTime.now());
       collection.add(element);
       manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
-      try {
-        manager.executeCommand("save");
-      } catch (CommandNotFoundException ignore) {
-      }
+
+      manager.getCollectionData().saveObject(element);
+
     } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");
   }
 

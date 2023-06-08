@@ -2,6 +2,8 @@ package org.server.command;
 
 import collection.MusicBandCollection;
 import collection.element.MusicBand;
+
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import org.server.cli.UserInputChannel;
 import org.server.cli.UserOutputChannel;
 import org.server.command.commands.*;
 import org.server.command.exceptions.CommandNotFoundException;
+import org.server.database.CollectionData;
 import org.server.request.RequestManager;
 import parser.FileManager;
 import request.CommandPackage;
@@ -19,39 +22,40 @@ public class CommandManager {
 
   private final HashMap<String, Command> commandsHashMap = new HashMap<>();
   private UserInputChannel inputChannel;
-  private final RequestManager requestManager;
   private UserOutputChannel outputChannel;
+  private  CollectionData collectionData;
   private final List<String> commandsHistory = new ArrayList<>();
+
+  public CommandManager(Socket socket, MusicBandCollection collection, CollectionData collectionData){
+    registerAllCommands(this, collection, collectionData);
+    this.outputChannel = new NetworkUserChannel(socket);
+    this.collectionData = collectionData;
+  }
+
+  public CollectionData getCollectionData(){
+    return collectionData;
+  }
 
   public static void registerAllCommands(
       CommandManager commandManager,
       MusicBandCollection collectionManager,
-      FileManager fileManager) {
+      CollectionData fileManager) {
     commandManager.registerCommand(new ClearCommand(collectionManager, commandManager));
     commandManager.registerCommand(new RemoveHeadCommand(collectionManager, commandManager));
     commandManager.registerCommand(new RemoveByIdCommand(collectionManager, commandManager));
     commandManager.registerCommand(new AddCommand(collectionManager, commandManager));
-    commandManager.registerCommand(new SaveCommand(collectionManager, fileManager, commandManager));
     commandManager.registerCommand(new UpdateCommand(collectionManager, commandManager));
     commandManager.registerCommand(new AddIfMaxCommand(collectionManager, commandManager));
     commandManager.registerCommand(new GetCollectionCommand(collectionManager, commandManager));
-    commandManager.registerCommand(new SaveCommand(collectionManager, fileManager, commandManager));
     commandManager.registerCommand(
         new GetCollectionUpdateTimeCommand(collectionManager, commandManager));
   }
 
-  public CommandManager(RequestManager channel) {
-    this.requestManager = channel;
-    this.outputChannel = new NetworkUserChannel(channel);
-  }
 
   public UserOutputChannel getOutputChannel() {
     return outputChannel;
   }
 
-  public RequestManager getRequestManager() {
-    return requestManager;
-  }
 
   public UserInputChannel getInputChannel() {
     return inputChannel;

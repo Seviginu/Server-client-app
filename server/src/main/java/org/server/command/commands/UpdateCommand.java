@@ -30,10 +30,7 @@ public class UpdateCommand extends ElementCommand {
     if (collection.updateElement(id, element)) {
       manager.getOutputChannel().sendStringLine("Элемент успешно обновлен");
     } else manager.getOutputChannel().sendStringLine("Элемент с указанным id не существует");
-    try {
-      manager.executeCommand("save");
-    } catch (CommandNotFoundException ignore) {
-    }
+
   }
 
   @Override

@@ -14,10 +14,6 @@ public class ClearCommand extends CollectionCommand {
   @Override
   public void execute(List<String> args) {
     collection.clear();
-    try {
-      manager.executeCommand("save");
-    } catch (CommandNotFoundException ignore) {
-    }
     manager.getOutputChannel().sendStringLine("Коллекция очищена");
   }
 

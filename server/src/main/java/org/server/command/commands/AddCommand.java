@@ -17,11 +17,7 @@ public class AddCommand extends ElementCommand {
     element.setId(MusicBandCollection.generateId());
     element.setCreationDate(LocalDateTime.now());
     collection.add(element);
-    try {
-      manager.executeCommand("save");
-    } catch (CommandNotFoundException ignore) {
-      ignore.printStackTrace();
-    }
+    manager.getCollectionData().saveObject(element);
     manager.getOutputChannel().sendStringLine("Элемент добавлен");
   }
 
