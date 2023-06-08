@@ -5,6 +5,7 @@ import collection.element.MusicBand;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +18,7 @@ public class MusicBandCollection implements Serializable {
   private static final Set<Long> idSet = new HashSet<>();
 
   public MusicBandCollection() {
-    this.listOfElements = new LinkedList<>();
+    this.listOfElements = new CopyOnWriteArrayList<>();
   }
 
   public MusicBandCollection(List<MusicBand> listOfElements) {
@@ -25,7 +26,7 @@ public class MusicBandCollection implements Serializable {
   }
 
     public MusicBandCollection(Object[] objects) {
-      ArrayList<?> arrayList = new ArrayList<>(Arrays.stream(objects).toList());
+      CopyOnWriteArrayList<?> arrayList = new CopyOnWriteArrayList<>(Arrays.stream(objects).toList());
       this.listOfElements = (List<MusicBand>) arrayList;
     }
 

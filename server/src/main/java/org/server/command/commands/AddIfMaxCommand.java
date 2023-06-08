@@ -33,7 +33,7 @@ public class AddIfMaxCommand extends ElementCommand {
       collection.add(element);
       manager.getOutputChannel().sendStringLine("Элемент добавлен в коллекцию");
 
-      manager.getCollectionData().saveObject(element);
+      element.setId(manager.getCollectionData().saveObject(element));
 
     } else manager.getOutputChannel().sendStringLine("Элемент не добавлен в коллекцию");
   }

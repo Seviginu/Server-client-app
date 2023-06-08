@@ -5,11 +5,13 @@ import java.net.Socket;
 import java.sql.*;
 
 public class User {
-    private final Socket socket;
+    private Socket socket;
 
 
+    public volatile int a = 0;
+    public int b = 0;
 
-    public User(Socket socket){
-        this.socket = socket;
+    public User(){
+
     }
 }

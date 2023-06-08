@@ -1,6 +1,5 @@
 package org.server.database;
 
-import collection.MusicBandCollection;
 import collection.element.Entity;
 import collection.element.EnumString;
 import collection.element.Name;
@@ -9,7 +8,6 @@ import utils.EnumFromString;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -50,7 +48,6 @@ public class CollectionData {
 
     public long saveObject(Object o){
         try {
-            System.out.println(o);
             PreparedStatement statement = connection.prepareStatement(insertBuilder(o), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Field field : o.getClass().getDeclaredFields()){
@@ -71,7 +68,6 @@ public class CollectionData {
                 }
                 counter++;
             }
-            System.out.println(statement.toString());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if(resultSet.next())
@@ -86,7 +82,10 @@ public class CollectionData {
     private void setFields(Field[] fields, Object o, ResultSet resultSet) throws SQLException, IllegalAccessException, InstantiationException {
         for(Field field : fields){
             field.setAccessible(true);
-            if(field.isAnnotationPresent(Pk.class)) continue;
+            if(field.isAnnotationPresent(Pk.class)) {
+                field.set(o, resultSet.getLong(field.getName()));
+                continue;
+            }
             if(field.isAnnotationPresent(Entity.class)){
                 field.set(o, loadObject(field, resultSet.getInt(field.getAnnotation(Name.class).name())));
             }
@@ -109,7 +108,6 @@ public class CollectionData {
     }
 
     private Object loadObject(Field field, long id) throws InstantiationException, IllegalAccessException, SQLException {
-        System.out.println(field.getType());
         Object o = field.getType().newInstance();
         PreparedStatement statement =
                 connection.prepareStatement(
@@ -135,8 +133,14 @@ public class CollectionData {
 
     public void removeElement(Class<?> clss, long id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(
-                "DELETE * FROM \""+clss.getSimpleName()+"\" WHERE id=?");
+                "DELETE FROM \""+clss.getSimpleName()+"\" WHERE id=?");
         preparedStatement.setLong(1, id);
+        preparedStatement.executeUpdate();
+    }
+
+    public void clear(Class<?> clss) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM \""+clss.getSimpleName()+"\"");
         preparedStatement.executeUpdate();
     }
 }
