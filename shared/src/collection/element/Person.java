@@ -6,8 +6,12 @@ import java.util.Objects;
 public class Person extends Printable {
   private String name; // Поле не может быть null, Строка не может быть пустой
   private Float height; // Поле может быть null, Значение поля должно быть больше 0
+  @EnumString
   private Color hairColor; // Поле не может быть null
+  @EnumString
   private Country nationality; // Поле не может быть null
+  @Entity
+  @Name(name="location_id")
   private Location location; // Поле не может быть null
 
   public String getName() {

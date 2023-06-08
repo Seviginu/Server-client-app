@@ -25,7 +25,7 @@ public class Main {
     commandManager.registerCommand(new AddIfMaxCommand(requestManager, commandManager));
     commandManager.registerCommand(new InfoCommand(requestManager, commandManager));
     commandManager.registerCommand(new ExecuteScriptCommand(commandManager));
-    UserHandler userHandler = new UserHandler(new ConsoleChannel(), commandManager);
+    UserHandler userHandler = new UserHandler(new ConsoleChannel(), commandManager, requestManager);
     userHandler.startLoop();
   }
 }
